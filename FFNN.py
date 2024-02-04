@@ -64,6 +64,7 @@ class NN():
         for key in self.params:
             self.params[key] -= self.lr * grads[key]
 
+        
     def forward_pass(self,x):
         """
         For Layer 1 to L-1 we find the the a_k and h_k
@@ -113,7 +114,7 @@ class NN():
             
             
             # Calculating wrt Weights and B
-            
+
             # grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
             grad['W'+str(i)] = np.dot(grad['a'+str(i)],activation_H['h'+str(i-1)].T)
             # print('a shape',grad['a'+str(i)].shape,'h.shape',activation_H['h'+str(i-1)].shape)
@@ -129,6 +130,51 @@ class NN():
                 grad['a'+ str(i-1)] = grad['h'+ str(i-1)] * (tmp/((tmp+1)**2))
         
         return grad
+
+    
+    def sgd(self,train_X ,train_Y):
+
+        """
+        Below is the implementation of the sthochastic gradient descent
+
+            estimating the total gradient based on a single data point.
+        """
+        max_epoch = 3
+        for i in range(max_epoch) :   
+            for x ,y in zip(train_X,train_Y):
+                activations_A , activations_H = self.forward_pass(x)
+                gradients = self.back_propagation(y , activations_A ,activations_H )
+
+                # Updating weight and biases in the same loop
+
+                self.update_weights_and_bias(gradients)
+
+
+    def mgd(self, train_X , train_Y):
+        """
+        Below is the implementation of the momentum based gradient descent
+        
+        def do_mgd(max_epochs):
+            w,b,eta = -2,-2,1.0
+            prev_uw,prev_ub,beta = 0,0,0.9
+        
+            for i in range(max_epochs):
+                dw,db = 0,0        
+                for x,y in zip(X,Y):
+                    dw += grad_w(w,b,x,y)
+                    db += grad_b(w,b,x,y)
+                    
+                uw = beta*prev_uw+eta*dw
+                ub = beta*prev_ub+eta*db
+                w = w - vw
+                b = b - vb
+                prev_uw = uw
+                prev_ub = ub
+            
+        """
+        pass
+
+                
 
     def train(self,train_X,train_y):
 
