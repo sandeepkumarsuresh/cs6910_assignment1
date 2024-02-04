@@ -11,7 +11,7 @@ if __name__ == '__main__':
     (train_X, train_y), (test_X, test_y) = fashion_mnist.load_data()
 
     # Ploting the images
-    
+
     class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
     plt.figure(figsize=(10,10))
     for i in range(25):
@@ -30,10 +30,10 @@ if __name__ == '__main__':
     Here the values are from 0 to 255 --> brightness of the pixel values
     Therefore converting the pixel values to float values --> for easier calc of gradients
     """
-    # train_X = (train_X.astype(np.float32)).reshape(len(train_X),-1)
-    # test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
-    # test_y = to_categorical(test_y.astype(np.float32))
-    # train_y = to_categorical(train_y.astype(np.float32))
+    train_X = (train_X.astype(np.float32)).reshape(len(train_X),-1)
+    test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
+    test_y = to_categorical(test_y.astype(np.float32))
+    train_y = to_categorical(train_y.astype(np.float32))
 
     """
     Passing the Data into the Feed Forward Network
