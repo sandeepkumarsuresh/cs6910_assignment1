@@ -54,6 +54,23 @@ class NN():
             intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
         return intialize_weights_and_bias
     
+    def Initialize_gradients_to_zeros():
+        """
+        This function is to initialize all the weights and biases
+        to zero.
+
+        Mainly used in MGD and other optimisation function to accumulate
+        the gradients
+        """
+        grads_to_zero = {}
+        for i in range(1,self.n_hidden_layers):
+            grads_to_zero["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1])
+            grads_to_zero["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
+        return grads_to_zero
+        
+
+
+    
     def update_weights_and_bias(self,grads):
         """
         To update the weights and bias after backpropagation
@@ -172,7 +189,153 @@ class NN():
                 prev_ub = ub
             
         """
-        pass
+        beta = 0.9
+        max_epoch = 4
+        history = self.Initialize_gradients_to_zeros()
+
+        for i in range(max_epoch):
+            grads_wandb = self.Initialize_gradients_to_zeros()
+            lookahead_wandb = self.Initialize_gradients_to_zeros()
+            for x ,y in zip(train_X,train_Y):
+                activations_A , activations_H = self.forward_pass(x)
+                gradients = self.back_propagation(y , activations_A ,activations_H )
+
+                for key in gradients:
+                    grads_wandb[key]+=gradients[key]
+            
+            for key in lookahead_wandb:
+                lookahead_wandb[key] = beta*grads_wandb[key] + eta*gradients[key]
+            
+            for key in self.params:
+                self.params[key] = self.params[key] - history[key]
+            
+            for key in history:
+                history[key]+= lookahead_wandb[key]
+  
+    def nag(self ,train_X , train_Y):
+        """
+        This is how the gradient of all the previous updates is added to the current update.
+
+        Update rule for NAG:
+            wt+1 = wt - updatet
+            While calculating the updatet, We will include the look ahead gradient (∇wlook_ahead).
+            updatet = gamma * update_t-1 + η∇wlook_ahead
+
+            ∇wlook_ahead is calculated by:
+            wlook_ahead = wt -  gamma*update_t-1
+
+            This look-ahead gradient will be used in our update and will prevent overshooting.
+        
+        """
+        max_epoch = 3
+        history = self.Initialize_gradients_to_zeros()
+        gamma = 0.9
+        for i in range(max_epoch):
+            grads_wandb = self.Initialize_gradients_to_zeros()
+            lookaheads_wandb = self.Initialize_gradients_to_zeros()
+            # Computing lookahead values
+            for key in lookaheads_wandb:
+                lookaheads_wandb[key] = gamma*history[key]
+            for key in self.params:
+                self.params[key]-= lookaheads_wandb[key]
+            
+            for x,y in zip(train_X,train_Y):
+                activations_A , activations_H = self.forward_pass(x)
+                gradients = self.back_propagation(y , activations_A ,activations_H )
+
+                for key in grads_wandb:
+                    grads_wandb[key] += gradients[key]
+                
+            # Now moving further in the direction of that gradients
+        
+            # Calaculating Lookaheads
+            for key in lookaheads_wandb:
+                lookaheads_wandb[key] = gamma*history[key] + eta*grads_wandb
+            
+            # Caluclating the update
+                
+            for key in self.params:
+                self.params[key] -= lookaheads_wandb[key]
+            
+            # updating the lookaheads to global history
+            
+            for key in history:
+                history[key] = lookaheads_wandb[key]
+
+    
+    def rms_prop(self,train_x , train_Y):
+        """
+        """
+        max_epoch = 3 
+        epsilon = 0.000001 # This is for mathematical stability 
+        beta = 0.9
+
+        history = self.Initialize_gradients_to_zeros()
+
+        for epoch in range(max_epoch):
+            grads_wandb = self.Initialize_gradients_to_zeros()
+
+            for x,y in zip(train_x,train_Y):
+                activations_A , activations_H = self.forward_pass(x)
+                gradients = self.back_propagation(y , activations_A ,activations_H )
+
+            for key in grads_wandb:
+                grads_wandb[key] += gradients[key]
+        
+            for key in history:
+                history[key] = beta* history[key] + ((1- beta)*np.square(grads_wandb[key]))
+            for key in self.params:
+                self.params[key] = self.params[key] - (eta/(np.sqrt(history[key])+epsilon))*grads_wandb[key]
+                    
+
+    def adam(self,train_X , train_Y):
+        """
+        Combination of momentum based gradient descent and RMS prop
+            mt=β1⋅mt+(1-β1)⋅(δwtδL)
+
+            vt=β2⋅vt+(1-β2)⋅(δLδwt)2vt=β2⋅vt+(1-β2)⋅(δwtδL)2
+
+        We will also do a bias correction
+            mt = mt / (1 - beta1^t)
+            vt = vt / (1 - beta2^t)
+
+        """
+
+        max_epoch = 3 
+        
+        beta1 = 0.9
+        beta2 =0.999
+
+        moment = self.Initialize_gradients_to_zeros()
+        lookahead = self.Initialize_gradients_to_zeros()
+        moment_hat = self.Initialize_gradients_to_zeros()
+        lookahead_hat = self.Initialize_gradients_to_zeros()
+        
+        epsilon = 0.000001 # This is for mathematical stability 
+
+        for epoch in range(max_epoch):
+            grads_wandb = self.Initialize_gradients_to_zeros()
+            
+            for x,y in zip(train_X,train_Y):
+                activations_A , activations_H = self.forward_pass(x)
+                gradients = self.back_propagation(y , activations_A ,activations_H )
+
+            for key in grads_wandb:
+                grads_wandb[key]+= gradients[key]
+        
+            for key in self.params:
+                moment[key] = beta1*moment[key] + (1-beta1)*grads_wandb[key]
+                lookahead[key] = beta2*lookahead[key] + (1-beta2)*grads_wandb[key]
+
+                moment_hat[key] = moment[key]/(1-np.power(beta1,epoch+1))
+                lookahead_hat[key] = lookahead[key]/(1-np.power(beta2,epoch+1))
+
+                self.params[key] = self.params[key] - (eta/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+
+
+
+                
+
 
                 
 
