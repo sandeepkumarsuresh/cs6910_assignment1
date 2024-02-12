@@ -1,5 +1,6 @@
 import numpy as np
 from tqdm import tqdm
+from activations import *
 
 """
 Author : Sandeep Kumar Suresh
@@ -31,17 +32,12 @@ class NN():
     Initializing the number and the size of each hidden layers
     """
     def __init__(self,n_hidden_layers,s_hidden_layer,lr=0.001):
+        # Initializing the Constructor
         self.n_hidden_layers = n_hidden_layers # Number of hidden layers
         self.s_hidden_layer = s_hidden_layer # Size of the hidden layers
         self.lr = lr # Making the learning rate to some value
         self.params = self.Initialize_Params() # Initalizing the weights and biases
-    def sigmoid_activation(self,x):
-        return 1.0/(1.0 + np.exp(-x)) # 1.0 is for floating for accuracy
-    
-    def softmax(self,x):
-        # returns the output probabilities
-        exps = np.exp(x)
-        return exps/np.sum(exps)
+
 
     def Initialize_Params(self):
         """
