@@ -77,6 +77,23 @@ class NN():
         for key in self.params:
             self.params[key] -= self.lr * grads[key]
 
+    def compute_loss(self,y_truth,y_pred):
+        """
+        Since we are doing classification , we need to compute the 
+        cross entropy loss
+        
+        For the case of one -hot encodings
+        
+        L(t,p) = -tklog(pk) = -log(pk)
+
+        """
+        max_index = np.argmax(y_truth)
+        p_k = y_pred[max_index]
+        return -np.log(p_k)
+        
+
+        pass
+
         
     def forward_pass(self,x):
         """
