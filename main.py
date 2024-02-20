@@ -6,6 +6,14 @@ import FFNN
 from tqdm import tqdm
 import wandb
 
+
+def normalise(data):
+    """
+    Input will be image matrix which should be flatten
+    """
+    return data/255
+
+
 if __name__ == '__main__':
 
     (train_X, train_y), (test_X, test_y) = fashion_mnist.load_data()
@@ -58,6 +66,14 @@ if __name__ == '__main__':
     test_y = to_categorical(test_y.astype(np.float32))
     train_y = to_categorical(train_y.astype(np.float32))
 
+
+    #----------------------------------------------------------------------------------
+            # Normalising the data
+    #----------------------------------------------------------------------------------
+
+    train_X = normalise(train_X)
+    test_X = normalise(test_X)
+
     """
     Passing the Data into the Feed Forward Network
     """
@@ -66,9 +82,9 @@ if __name__ == '__main__':
 
     # Forward Pass
 
-    model.train(train_X,train_y)
+    model.do_vanilla_GD(train_X,train_y)
 
-
+    # model.evaluate_model_performance(test_X,test_y)
 
 
 

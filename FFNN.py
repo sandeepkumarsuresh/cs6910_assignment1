@@ -1,6 +1,8 @@
 import numpy as np
 from tqdm import tqdm
 from activations import *
+from sklearn.metrics import accuracy_score
+
 
 """
 Author : Sandeep Kumar Suresh
@@ -118,6 +120,7 @@ class NN():
         # y_hat = activation_H['h'+str(self.n_hidden_layers-1)] # Final output pred
 
         return activation_A , activation_H 
+    
     def back_propagation(self,y,activation_A ,activation_H ) :
 
         # print("####################### Inside Backprop ####################### ")
@@ -140,7 +143,9 @@ class NN():
         # print('ytruth',y_truth.shape)
 
         # gradient of L th Layer
-        grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) * y_pred * (1 - y_pred)
+        # grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) * y_pred * (1 - y_pred)
+        grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) #* y_pred * (1 - y_pred)
+
         
         # Callculating gradient from L to 1
         for i in range(self.n_hidden_layers-1 , 0 , -1):
@@ -149,7 +154,7 @@ class NN():
             # Calculating wrt Weights and B
 
             # grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
-            grad['W'+str(i)] = np.dot(grad['a'+str(i)],activation_H['h'+str(i-1)].T)
+            grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
             # print('a shape',grad['a'+str(i)].shape,'h.shape',activation_H['h'+str(i-1)].shape)
             grad['B'+str(i)] = grad['a'+str(i)]
 
@@ -355,10 +360,10 @@ class NN():
 
                 
 
-    def train(self,train_X,train_y):
+    def do_vanilla_GD(self,train_X,train_Y):
 
-        for i in tqdm(range(3)):
-            for x , y in zip(train_X,train_y):
+        for i in tqdm(range(10)):
+            for x , y in zip(train_X,train_Y):
                 
                 # print('x shape' ,x.shape)
             
@@ -370,15 +375,44 @@ class NN():
 
 
                 gradients = self.back_propagation(y , activations_A ,activations_H )
-            print("gradients",gradients)
+            
+                self.update_weights_and_bias(gradients)
+            # print("gradients",gradients)
                 # For gradient Update
                 # grads  = self.update_weights_and_bias(gradients)
             # break
             # print('gradient_update_after_each_epoch',grads)
+            acc = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc)
 
+    def evaluate_model_performance(self,train_X,test_X):
+        """
+        This function is to evaluate accuracy after each timestep.
+        """
 
-    def evaluate_model_performance():
-        pass
+        pred_labels = []
+        truth_labels = []
+        # predictions = []
+        
+        for x,y in tqdm(zip(train_X,test_X)):
+            # doing the forward pass for all test data
+            _ , activations_H = self.forward_pass(x)
+            
+            # output for the last layer
+            pred = np.argmax(activations_H['h'+ str(self.n_hidden_layers -1 )])
+            y_truth = np.argmax(y.reshape(len(y),1))
+
+            # print('y_truth',y_truth)
+            # print('pred',pred)
+            
+            pred_labels.append(pred)
+            truth_labels.append(y_truth)
+            # predictions.append(pred == y_truth)
+        
+        # print((np.sum(predictions)*100)/len(predictions))
+        accuracy = accuracy_score(pred_labels,truth_labels)
+
+        return accuracy
 
 
         
