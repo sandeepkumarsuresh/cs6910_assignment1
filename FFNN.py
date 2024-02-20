@@ -46,7 +46,10 @@ class NN():
         """
         intialize_weights_and_bias = {}
         for i in range(1,self.n_hidden_layers):
-            intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1])
+            # intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1])
+            # intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
+
+            intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) * np.sqrt(2/(self.s_hidden_layer[i-1] + self.s_hidden_layer[i]))
             intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
         return intialize_weights_and_bias
     
@@ -107,10 +110,10 @@ class NN():
         # print(activation_H['h0'].shape)
         for i in range(1 , self.n_hidden_layers-1):
             activation_A['a'+str(i)] = (self.params['W'+str(i)] @ activation_H['h'+str(i-1)] ) + self.params["B"+str(i)]  # o = W_1*x + B_1
-            activation_H['h'+str(i)] = self.sigmoid_activation( activation_A['a'+str(i)]) # y = sigmoid(W_1*x + B_1) 
+            activation_H['h'+str(i)] = sigmoid_activation( activation_A['a'+str(i)]) # y = sigmoid(W_1*x + B_1) 
 
         activation_A['a'+str(self.n_hidden_layers-1)] = self.params["W"+str(self.n_hidden_layers-1)] @ activation_H['h'+str(self.n_hidden_layers -2)]+ self.params["B"+str(self.n_hidden_layers-1)]
-        activation_H['h'+str(self.n_hidden_layers-1)] = self.softmax(activation_A['a'+str(self.n_hidden_layers-1)])
+        activation_H['h'+str(self.n_hidden_layers-1)] = softmax(activation_A['a'+str(self.n_hidden_layers-1)])
 
         # y_hat = activation_H['h'+str(self.n_hidden_layers-1)] # Final output pred
 
@@ -133,7 +136,7 @@ class NN():
         y_pred = activation_H['h'+str(self.n_hidden_layers-1)] # Final ouput during forward pass
         y_truth = y.reshape(-1 , 1 ) # reshape to column 1 with any number of rows
 
-        print('ypred',y_pred.shape)
+        # print('ypred',y_pred.shape)
         # print('ytruth',y_truth.shape)
 
         # gradient of L th Layer
@@ -367,13 +370,15 @@ class NN():
 
 
                 gradients = self.back_propagation(y , activations_A ,activations_H )
-                # print("gradients",gradients)
+            print("gradients",gradients)
                 # For gradient Update
                 # grads  = self.update_weights_and_bias(gradients)
-            break
+            # break
             # print('gradient_update_after_each_epoch',grads)
 
 
+    def evaluate_model_performance():
+        pass
 
 
         

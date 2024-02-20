@@ -30,20 +30,20 @@ if __name__ == '__main__':
             plt.show()
 
     """
-    wandb.login()
+    # wandb.login()
 
-    run = wandb.init(
-        project ="test"
-    )  
+    # run = wandb.init(
+    #     project ="test"
+    # )  
 
-    indices = [list(train_y).index(i) for i in range(10)]
-    images = []
-    labels = []
-    for i in indices:
-        images.append(train_X[i])
-        labels.append(class_names[train_y[i]])
-    plots = [wandb.Image(image, caption=caption) for image, caption in zip(images, labels)] # The plots needs to be an array for logging
-    wandb.log({'examples':plots})
+    # indices = [list(train_y).index(i) for i in range(10)]
+    # images = []
+    # labels = []
+    # for i in indices:
+    #     images.append(train_X[i])
+    #     labels.append(class_names[train_y[i]])
+    # plots = [wandb.Image(image, caption=caption) for image, caption in zip(images, labels)] # The plots needs to be an array for logging
+    # wandb.log({'examples':plots})
 
 
     """
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     # Forward Pass
 
-    # model.train(train_X,train_y)
+    model.train(train_X,train_y)
 
 
 
