@@ -1,0 +1,77 @@
+Vanilla GD
+
+Accuracy =  0.6988333333333333
+Accuracy =  0.7513833333333333
+Accuracy =  0.7882333333333333
+Accuracy =  0.81155
+Accuracy =  0.8242833333333334
+Accuracy =  0.8323166666666667
+Accuracy =  0.8377833333333333
+Accuracy =  0.8427
+Accuracy =  0.8469333333333333
+Accuracy =  0.8508
+
+*********************************************
+Momentum Based GD
+
+Accuracy =  0.13765
+Accuracy =  0.0884
+Accuracy =  0.1143
+Accuracy =  0.1011
+Accuracy =  0.15053333333333332
+Accuracy =  0.09993333333333333
+Accuracy =  0.1
+Accuracy =  0.18028333333333332
+Accuracy =  0.1
+Accuracy =  0.09666666666666666
+Accuracy =  0.1
+Accuracy =  0.10008333333333333
+Accuracy =  0.1
+Accuracy =  0.17925
+Accuracy =  0.1
+
+******************************************************************8Accuracy =  0.1107
+Accuracy =  0.14095
+Accuracy =  0.16653333333333334
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.11696666666666666
+Accuracy =  0.12973333333333334
+Accuracy =  0.1
+Accuracy =  0.41633333333333333
+Accuracy =  0.47676666666666667
+Accuracy =  0.45748333333333335
+Accuracy =  0.4689
+Accuracy =  0.5001666666666666
+Accuracy =  0.5315833333333333
+Accuracy =  0.5565333333333333
+Accuracy =  0.5752333333333334
+Accuracy =  0.58805
+
+******************************************************************************
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1
+Accuracy =  0.1981
+***********************************************************************************
+
+SGD
+
+Accuracy =  0.6944666666666667
+Accuracy =  0.7504333333333333
+Accuracy =  0.7839
+Accuracy =  0.8092666666666667
+Accuracy =  0.8246
+Accuracy =  0.8324333333333334
+Accuracy =  0.8395333333333334
+Accuracy =  0.8450166666666666
+Accuracy =  0.8494
+Accuracy =  0.8528166666666667
+
+**********************************************************************************
+

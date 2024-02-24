@@ -82,7 +82,12 @@ if __name__ == '__main__':
 
     # Forward Pass
 
-    model.do_vanilla_GD(train_X,train_y)
+    # model.do_vanilla_GD(train_X,train_y)
+    # model.mgd(train_X,train_y)
+    # model.nag(train_X,train_y)
+    model.sgd(train_X,train_y)
+
+
 
     # model.evaluate_model_performance(test_X,test_y)
 
