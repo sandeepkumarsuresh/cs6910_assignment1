@@ -5,6 +5,7 @@ from keras.utils import to_categorical
 import FFNN
 from tqdm import tqdm
 import wandb
+from sklearn.model_selection import train_test_split
 
 
 def normalise(data):
@@ -74,6 +75,37 @@ if __name__ == '__main__':
     train_X = normalise(train_X)
     test_X = normalise(test_X)
 
+    #----------------------------------------------------------------------------------
+            # Creating a Validation Data from the train Data
+    #----------------------------------------------------------------------------------
+
+    # train_X_split , train_Y_split , val_X , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
+
+    #----------------------------------------------------------------------------------
+            # Creating a code for sweep configurations
+    #----------------------------------------------------------------------------------
+
+
+
+    # sweep_configuration = {
+    #     "name": "sweepdemo",
+    #     "project":"test",
+    #     "description":"To text if wandb web preview is working",
+    #     "method": "random",
+    #     "metric": {"goal": "minimize", "name": "loss"},
+    #     "parameters": {
+    #         "learning_rate": {"min": 0.0001, "max": 0.1},
+    #         "batch_size": {"values": [16, 32, 64]},
+    #         "epochs": {"values": [5, 10, 15]},
+    #         "optimizer": {"values": ["adam", "sgd"]},
+    #     },
+    # }
+    # wandb.init(
+    #     project="test",
+    #     config=sweep_configuration
+    # )
+
+
     """
     Passing the Data into the Feed Forward Network
     """
@@ -84,8 +116,8 @@ if __name__ == '__main__':
 
     # model.do_vanilla_GD(train_X,train_y)
     # model.mgd(train_X,train_y)
-    # model.nag(train_X,train_y)
-    model.sgd(train_X,train_y)
+    model.nag(train_X,train_y)
+    # model.sgd(train_X,train_y)
 
 
 

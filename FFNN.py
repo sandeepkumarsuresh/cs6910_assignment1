@@ -2,8 +2,8 @@ import numpy as np
 from tqdm import tqdm
 from activations import *
 from sklearn.metrics import accuracy_score
-
-
+import random
+import wandb
 """
 Author : Sandeep Kumar Suresh
             EE23S059
@@ -28,18 +28,18 @@ Here the
 ## To Do
 # clear Confusions regarding the parameter update and the number of hidden
 # layer neurons
-
+# np.random.seed(42)
 class NN():
     """
     Initializing the number and the size of each hidden layers
     """
-    def __init__(self,n_hidden_layers,s_hidden_layer,lr=0.001,batch_size=4):
+    def __init__(self,n_hidden_layers,s_hidden_layer,lr=1,mini_batch_size=64):
         # Initializing the Constructor
         self.n_hidden_layers = n_hidden_layers # Number of hidden layers
         self.s_hidden_layer = s_hidden_layer # Size of the hidden layers
         self.lr = lr # Making the learning rate to some value
         self.params = self.Initialize_Params() # Initalizing the weights and biases
-        self.batch_size = batch_size # Mini Batch Size
+        self.mini_batch_size = mini_batch_size # Mini Batch Size
 
 
     def Initialize_Params(self):
@@ -47,10 +47,11 @@ class NN():
         We need to update the weights and bias as a whole.
         This can only be done if the weights and bias are defined like this
         """
+        
         intialize_weights_and_bias = {}
         for i in range(1,self.n_hidden_layers):
 
-            # intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.1
+            # intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.01
             # intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
 
             intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) * np.sqrt(2/(self.s_hidden_layer[i-1] + self.s_hidden_layer[i]))
@@ -99,7 +100,6 @@ class NN():
         return -np.log(p_k)
         
 
-        pass
 
         
     def forward_pass(self,x):
@@ -195,8 +195,8 @@ class NN():
                 # grads  = self.update_weights_and_bias(gradients)
             # break
             # print('gradient_update_after_each_epoch',grads)
-            acc = self.evaluate_model_performance(train_X,train_Y)
-            print('Accuracy = ', acc)
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
 
     
     def sgd(self,train_X ,train_Y):
@@ -215,8 +215,10 @@ class NN():
                 # Updating weight and biases in the same loop
 
                 self.update_weights_and_bias(gradients)
-            acc = self.evaluate_model_performance(train_X,train_Y)
-            print('Accuracy = ', acc)
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
+            wandb.log({"loss":loss,
+                       "Accuracy":acc})
 
     def mgd(self, train_X , train_Y):
         """
@@ -240,14 +242,14 @@ class NN():
                 prev_ub = ub
             
         """
-        momentum = 0.5
-        max_epoch = 15
+        momentum = 0.9
+        max_epoch = 5
         history = self.Initialize_gradients_to_zeros()
 
-        datapoint_count = 0
         for i in range(max_epoch):
             grads_wandb = self.Initialize_gradients_to_zeros()
             lookahead_wandb = self.Initialize_gradients_to_zeros()
+            num_points_seen = 0
             for x ,y in zip(train_X,train_Y):
                 activations_A , activations_H = self.forward_pass(x)
                 gradients = self.back_propagation(y , activations_A ,activations_H )
@@ -255,31 +257,32 @@ class NN():
                 for key in grads_wandb:
                     grads_wandb[key]+=gradients[key]
                 
-                # datapoint_count+=1
+                num_points_seen +=1
 
-                # if(datapoint_count % self.batch_size == 0):
+                if(num_points_seen  % self.mini_batch_size == 0):
 
-                # print(grads_wandb)
-            for key in lookahead_wandb:
-                lookahead_wandb[key] = momentum*history[key] + self.lr*grads_wandb[key]
-            
-            
-
-
-            for key in self.params:
-                self.params[key] = self.params[key] - lookahead_wandb[key]
-            
-            # self.update_weights_and_bias(lookahead_wandb)
+                        # print(grads_wandb)
+                    for key in lookahead_wandb:
+                        lookahead_wandb[key] = momentum*history[key] + self.lr*grads_wandb[key]
+                    
+                    
 
 
-            for key in history:
-                history[key] = lookahead_wandb[key]
+                    for key in self.params:
+                        self.params[key] = self.params[key] - lookahead_wandb[key]
+                    
+                    # self.update_weights_and_bias(lookahead_wandb)
+
+
+                    for key in history:
+                        history[key] = lookahead_wandb[key]
             
                 
 
-            acc = self.evaluate_model_performance(train_X,train_Y)
-            print('Accuracy = ', acc)
-
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
+            wandb.log({"loss":loss,
+                       "Accuracy":acc})
     def nag(self ,train_X , train_Y):
         """
         This is how the gradient of all the previous updates is added to the current update.
@@ -301,6 +304,7 @@ class NN():
         for i in range(max_epoch):
             grads_wandb = self.Initialize_gradients_to_zeros()
             lookaheads_wandb = self.Initialize_gradients_to_zeros()
+            num_points_seen = 0
             # Computing beta*u_{t-1}
             for key in lookaheads_wandb:
                 lookaheads_wandb[key] = momentum*history[key]
@@ -314,27 +318,30 @@ class NN():
 
                 for key in grads_wandb:
                     grads_wandb[key] += gradients[key]
-                
-            # Now moving further in the direction of that gradients
-        
-            # Calaculating Lookaheads
-            for key in lookaheads_wandb:
-                lookaheads_wandb[key] = momentum*history[key] + self.lr*grads_wandb[key]
-            
-            # Caluclating the update
-                
-            for key in self.params:
-                self.params[key] -= lookaheads_wandb[key]
-            
-            # updating the lookaheads to global history
-            
-            for key in history:
-                history[key] = lookaheads_wandb[key]
-            
-            grads_wandb = self.Initialize_gradients_to_zeros()
+                num_points_seen +=1
 
-            acc = self.evaluate_model_performance(train_X,train_Y)
-            print('Accuracy = ', acc)
+                if(num_points_seen  % self.mini_batch_size == 0):
+
+                    # Now moving further in the direction of that gradients
+                
+                    # Calaculating Lookaheads
+                    for key in lookaheads_wandb:
+                        lookaheads_wandb[key] = momentum*history[key] + self.lr*grads_wandb[key]
+                    
+                    # Caluclating the update
+                        
+                    for key in self.params:
+                        self.params[key] -= lookaheads_wandb[key]
+                    
+                    # updating the lookaheads to global history
+                    
+                    for key in history:
+                        history[key] = lookaheads_wandb[key]
+                    
+                    grads_wandb = self.Initialize_gradients_to_zeros()
+
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
 
 
     
@@ -414,16 +421,15 @@ class NN():
 
                 
 
-    def evaluate_model_performance(self,train_X,test_X):
+    def evaluate_model_performance(self,train_X,train_Y):
         """
         This function is to evaluate accuracy after each timestep.
         """
 
-        pred_labels = []
-        truth_labels = []
+        pred_labels , truth_labels ,cumullative_loss = [] , [] , []
         # predictions = []
         
-        for x,y in tqdm(zip(train_X,test_X)):
+        for x,y in tqdm(zip(train_X,train_Y)):
             # doing the forward pass for all test data
             _ , activations_H = self.forward_pass(x)
             
@@ -437,11 +443,15 @@ class NN():
             pred_labels.append(pred)
             truth_labels.append(y_truth)
             # predictions.append(pred == y_truth)
+            cumullative_loss.append(self.compute_loss(pred , y))
+
+
         
         # print((np.sum(predictions)*100)/len(predictions))
         accuracy = accuracy_score(pred_labels,truth_labels)
+        loss = np.sum(cumullative_loss)/len(cumullative_loss)
 
-        return accuracy
+        return accuracy,loss
 
 
         

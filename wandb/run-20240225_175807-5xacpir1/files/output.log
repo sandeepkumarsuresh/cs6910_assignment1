@@ -1,0 +1,34 @@
+/home/sandeep/Documents/IITM/Deep Learning/activations.py:13: RuntimeWarning: overflow encountered in exp
+  return 1.0/(1.0 + np.exp(-x)) # 1.0 is for floating for accuracy
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:168: RuntimeWarning: overflow encountered in exp
+  tmp = np.exp(-activation_A['a'+str(i-1)])
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:170: RuntimeWarning: invalid value encountered in divide
+  grad['a'+ str(i-1)] = grad['h'+ str(i-1)] * (tmp/((tmp+1)**2))
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+
+60000it [00:07, 8031.79it/s]
+Accuracy =  0.1 Loss :  inf
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 119, in <module>
+    model.mgd(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 252, in mgd
+    activations_A , activations_H = self.forward_pass(x)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 117, in forward_pass
+    activation_H['h'+str(i)] = sigmoid_activation( activation_A['a'+str(i)]) # y = sigmoid(W_1*x + B_1)
+  File "/home/sandeep/Documents/IITM/Deep Learning/activations.py", line 13, in sigmoid_activation
+    return 1.0/(1.0 + np.exp(-x)) # 1.0 is for floating for accuracy
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 119, in <module>
+    model.mgd(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 252, in mgd
+    activations_A , activations_H = self.forward_pass(x)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 117, in forward_pass
+    activation_H['h'+str(i)] = sigmoid_activation( activation_A['a'+str(i)]) # y = sigmoid(W_1*x + B_1)
+  File "/home/sandeep/Documents/IITM/Deep Learning/activations.py", line 13, in sigmoid_activation
+    return 1.0/(1.0 + np.exp(-x)) # 1.0 is for floating for accuracy
+KeyboardInterrupt

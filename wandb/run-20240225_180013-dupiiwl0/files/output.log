@@ -1,0 +1,66 @@
+
+  0%|             /home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 10%|███████▎                                                                 | 1/10 [00:49<07:24, 49.34s/it]
+ 10%|███████▎     /home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 20%|██████████████▌                                                          | 2/10 [01:32<06:07, 45.96s/it]
+ 20%|█████████████/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 30%|█████████████████████▉                                                   | 3/10 [02:27<05:48, 49.84s/it]
+ 30%|█████████████/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 40%|█████████████████████████████▏                                           | 4/10 [03:11<04:44, 47.41s/it]
+ 40%|█████████████/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 50%|████████████████████████████████████▌                                    | 5/10 [03:55<03:51, 46.22s/it]
+ 50%|█████████████/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 60%|███████████████████████████████████████████▊                             | 6/10 [04:39<03:02, 45.69s/it]
+ 60%|█████████████/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 70%|███████████████████████████████████████████████████                      | 7/10 [05:25<02:16, 45.63s/it]
+ 70%|█████████████/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+ 80%|██████████████████████████████████████████████████████████▍              | 8/10 [06:11<01:31, 45.88s/it]
+ 80%|██████████████████████████████████████████████████████████▍              | 8/10 [06:54<01:43, 51.78s/it]
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 117, in <module>
+    model.do_vanilla_GD(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 183, in do_vanilla_GD
+    activations_A , activations_H = self.forward_pass(x)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 116, in forward_pass
+    activation_A['a'+str(i)] = (self.params['W'+str(i)] @ activation_H['h'+str(i-1)] ) + self.params["B"+str(i)]  # o = W_1*x + B_1
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 117, in <module>
+    model.do_vanilla_GD(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 183, in do_vanilla_GD
+    activations_A , activations_H = self.forward_pass(x)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 116, in forward_pass
+    activation_A['a'+str(i)] = (self.params['W'+str(i)] @ activation_H['h'+str(i-1)] ) + self.params["B"+str(i)]  # o = W_1*x + B_1
+KeyboardInterrupt
