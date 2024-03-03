@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 123, in <module>
+    model.nadam(train_X_split,train_Y_split)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 473, in nadam
+    gradients = self.back_propagation(y , activations_A ,activations_H )
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 152, in back_propagation
+    grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) #* y_pred * (1 - y_pred)
+ValueError: operands could not be broadcast together with shapes (10,1) (784,1)
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 123, in <module>
+    model.nadam(train_X_split,train_Y_split)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 473, in nadam
+    gradients = self.back_propagation(y , activations_A ,activations_H )
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 152, in back_propagation
+    grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) #* y_pred * (1 - y_pred)
+ValueError: operands could not be broadcast together with shapes (10,1) (784,1)

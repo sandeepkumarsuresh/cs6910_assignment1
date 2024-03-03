@@ -6,7 +6,7 @@ import FFNN
 from tqdm import tqdm
 import wandb
 from sklearn.model_selection import train_test_split
-
+import yaml
 
 def normalise(data):
     """
@@ -39,11 +39,11 @@ if __name__ == '__main__':
             plt.show()
 
     """
-    wandb.login()
+    # wandb.login()
 
-    run = wandb.init(
-        project ="test"
-    )  
+    # run = wandb.init(
+    #     project ="test"
+    # )  
 
     # indices = [list(train_y).index(i) for i in range(10)]
     # images = []
@@ -75,11 +75,12 @@ if __name__ == '__main__':
     train_X = normalise(train_X)
     test_X = normalise(test_X)
 
+
     #----------------------------------------------------------------------------------
             # Creating a Validation Data from the train Data
     #----------------------------------------------------------------------------------
 
-    # train_X_split , train_Y_split , val_X , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
+    train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
 
     #----------------------------------------------------------------------------------
             # Creating a code for sweep configurations
@@ -100,24 +101,64 @@ if __name__ == '__main__':
     #         "optimizer": {"values": ["adam", "sgd"]},
     #     },
     # }
-    # wandb.init(
-    #     project="test",
-    #     config=sweep_configuration
-    # )
+
+    sweep_config_path = 'sweep_config.yaml'
+    with open(sweep_config_path, 'r') as file:
+        sweep_config = yaml.safe_load(file)
+    
+
+
+    wandb.init(
+        project="test",
+        config=sweep_config
+    )
+    config = wandb.config
+    
+    epochs = config.epochs
+    n_hidden_layers = config.n_hidden_layers
+    s_hidden_layers = config.s_hidden_layers
+    weight_decay = config.weight_decay
+    lr = config.lr
+    optimiser = config.optimiser
+    mini_batch_size = config.mini_batch_size
+    weight_initialization = config.weight_initialization
+    activations = config.activations
+    
+    print("Epochs Values:", epochs)
+    print("N Hidden Layers Values:", n_hidden_layers)
+    print("S Hidden Layers Values:", s_hidden_layers)
+    print("Weight Decay Values:", weight_decay)
+    print("Learning Rate Values:", lr)
+    print("Optimiser Values:", optimiser)
+    print("Batch Values:", mini_batch_size)
+    print("Weight Parameter Values:", weight_initialization)
+    print("Activation Parameter Values:", activations)
+
+
+
 
 
     """
     Passing the Data into the Feed Forward Network
     """
     # initializing the model
-    model = FFNN.NN(n_hidden_layers=4 , s_hidden_layer = [784 ,128, 32 , 10] )
+    model = FFNN.NN(n_hidden_layers=4 , s_hidden_layer = [784 ,128, 32 , 10] ,optimiser=optimiser , mini_batch_size=mini_batch_size)
+
+    sweep_id = wandb.sweep(sweep_config)
+
+    wandb.agent(sweep_id,)
 
     # Forward Pass
 
-#     model.do_vanilla_GD(train_X,train_y)
+    # model.do_vanilla_GD(train_X,train_y)
 #     model.mgd(train_X,train_y)
 #     model.nag(train_X,train_y)
-    model.sgd(train_X,train_y)
+    # model.sgd(train_X,train_y)
+    # model.rms_prop(train_X,train_y)
+    # model.adam(train_X,train_y)
+    model.nadam(train_X_split,train_Y_split)
+
+
 
 
 

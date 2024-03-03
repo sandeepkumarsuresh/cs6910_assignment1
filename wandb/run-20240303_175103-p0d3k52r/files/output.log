@@ -1,0 +1,21 @@
+0it [00:00, ?it/s]
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 121, in <module>
+    model.rms_prop(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 375, in rms_prop
+    acc ,loss = self.evaluate_model_performance(x,y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 440, in evaluate_model_performance
+    # doing the forward pass for all test data
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 116, in forward_pass
+    activation_H['h0'] = x.reshape(x.shape[0],1)
+IndexError: tuple index out of range
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 121, in <module>
+    model.rms_prop(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 375, in rms_prop
+    acc ,loss = self.evaluate_model_performance(x,y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 440, in evaluate_model_performance
+    # doing the forward pass for all test data
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 116, in forward_pass
+    activation_H['h0'] = x.reshape(x.shape[0],1)
+IndexError: tuple index out of range

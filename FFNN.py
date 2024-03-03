@@ -33,13 +33,16 @@ class NN():
     """
     Initializing the number and the size of each hidden layers
     """
-    def __init__(self,n_hidden_layers,s_hidden_layer,lr=0.001,mini_batch_size=64):
+    def __init__(self,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3):
         # Initializing the Constructor
         self.n_hidden_layers = n_hidden_layers # Number of hidden layers
         self.s_hidden_layer = s_hidden_layer # Size of the hidden layers
         self.lr = lr # Making the learning rate to some value
         self.params = self.Initialize_Params() # Initalizing the weights and biases
         self.mini_batch_size = mini_batch_size # Mini Batch Size
+        self.optimiser = optimiser
+        self.epochs = epochs
+
 
 
     def Initialize_Params(self):
@@ -51,11 +54,11 @@ class NN():
         intialize_weights_and_bias = {}
         for i in range(1,self.n_hidden_layers):
 
-            # intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.01
-            # intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
-
-            intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) * np.sqrt(2/(self.s_hidden_layer[i-1] + self.s_hidden_layer[i]))
+            intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.01
             intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
+
+            # intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) * np.sqrt(2/(self.s_hidden_layer[i-1] + self.s_hidden_layer[i]))
+            # intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
         return intialize_weights_and_bias
     
     def Initialize_gradients_to_zeros(self):
@@ -176,9 +179,9 @@ class NN():
 
 
 
-    def do_vanilla_GD(self,train_X,train_Y):
+    def vanilla_GD(self,train_X,train_Y):
 
-        for i in tqdm(range(10)):
+        for i in tqdm(range(self.epochs)):
             for x , y in zip(train_X,train_Y):
                 
                 # print('x shape' ,x.shape)
@@ -209,8 +212,7 @@ class NN():
 
             estimating the total gradient based on a single data point.
         """
-        max_epoch = 10
-        for i in range(max_epoch) :   
+        for i in range(self.epochs) :   
             for x ,y in zip(train_X,train_Y):
                 activations_A , activations_H = self.forward_pass(x)
                 gradients = self.back_propagation(y , activations_A ,activations_H )
@@ -227,11 +229,11 @@ class NN():
         """
         Below is the implementation of the momentum based gradient descent
         
-        def do_mgd(max_epochs):
+        def do_mgd(self.epochss):
             w,b,eta = -2,-2,1.0
             prev_uw,prev_ub,beta = 0,0,0.9
         
-            for i in range(max_epochs):
+            for i in range(self.epochss):
                 dw,db = 0,0        
                 for x,y in zip(X,Y):
                     dw += grad_w(w,b,x,y)
@@ -246,10 +248,9 @@ class NN():
             
         """
         momentum = 0.9
-        max_epoch = 5
         history = self.Initialize_gradients_to_zeros()
 
-        for i in range(max_epoch):
+        for i in range(self.epochs):
             grads_wandb = self.Initialize_gradients_to_zeros()
             lookahead_wandb = self.Initialize_gradients_to_zeros()
             num_points_seen = 0
@@ -301,10 +302,9 @@ class NN():
             This look-ahead gradient will be used in our update and will prevent overshooting.
         
         """
-        max_epoch = 3
         history = self.Initialize_gradients_to_zeros()
         momentum = 0.9
-        for i in range(max_epoch):
+        for i in range(self.epochs):
             grads_wandb = self.Initialize_gradients_to_zeros()
             lookaheads_wandb = self.Initialize_gradients_to_zeros()
             num_points_seen = 0
@@ -348,30 +348,48 @@ class NN():
 
 
     
-    def rms_prop(self,train_x , train_Y):
+    def rms_prop(self,train_X , train_Y):
         """
+        Depends on the intial learning rate 
+            parameters that worked are
+                epsilon = 1e-8
+                lr = 0.1
         """
-        max_epoch = 3 
-        epsilon = 0.000001 # This is for mathematical stability 
+        epsilon = 1e-8 # This is for mathematical stability 
         beta = 0.9
 
         history = self.Initialize_gradients_to_zeros()
 
-        for epoch in range(max_epoch):
+        for epoch in range(self.epochs):
             grads_wandb = self.Initialize_gradients_to_zeros()
 
-            for x,y in zip(train_x,train_Y):
+            num_points_seen = 0
+            # Computing the gradients
+            for x,y in zip(train_X,train_Y):
                 activations_A , activations_H = self.forward_pass(x)
                 gradients = self.back_propagation(y , activations_A ,activations_H )
 
+            
             for key in grads_wandb:
                 grads_wandb[key] += gradients[key]
-        
-            for key in history:
-                history[key] = beta* history[key] + ((1- beta)*np.square(grads_wandb[key]))
-            for key in self.params:
-                self.params[key] = self.params[key] - (eta/(np.sqrt(history[key])+epsilon))*grads_wandb[key]
-                    
+
+            num_points_seen+=1
+
+            if (num_points_seen % self.mini_batch_size == 0):
+
+                # Computing the history of updates
+                for key in history:
+                    history[key] = beta* history[key] + ((1- beta)*np.square(grads_wandb[key]))
+                
+                # Updating the parameters
+                for key in self.params:
+                    self.params[key] = self.params[key] - (self.lr/(np.sqrt(history[key])+epsilon))*grads_wandb[key]
+
+                grads_wandb = self.Initialize_gradients_to_zeros()
+
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
+
 
     def adam(self,train_X , train_Y):
         """
@@ -386,8 +404,7 @@ class NN():
 
         """
 
-        max_epoch = 3 
-        
+         
         beta1 = 0.9
         beta2 =0.999
 
@@ -396,9 +413,9 @@ class NN():
         moment_hat = self.Initialize_gradients_to_zeros()
         lookahead_hat = self.Initialize_gradients_to_zeros()
         
-        epsilon = 0.000001 # This is for mathematical stability 
+        epsilon = 1e-8 # This is for mathematical stability 
 
-        for epoch in range(max_epoch):
+        for epoch in range(self.epochs):
             grads_wandb = self.Initialize_gradients_to_zeros()
             
             for x,y in zip(train_X,train_Y):
@@ -415,12 +432,70 @@ class NN():
                 moment_hat[key] = moment[key]/(1-np.power(beta1,epoch+1))
                 lookahead_hat[key] = lookahead[key]/(1-np.power(beta2,epoch+1))
 
-                self.params[key] = self.params[key] - (eta/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+                self.params[key] = self.params[key] - (self.lr/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+            
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
 
 
+    def nadam(self,train_X , train_Y):
 
+        """
+        Nesterov Adam
+        """
+
+        
+        beta1 = 0.9
+        beta2 =0.999
+
+        moment = self.Initialize_gradients_to_zeros()
+        lookahead = self.Initialize_gradients_to_zeros()
+        moment_hat = self.Initialize_gradients_to_zeros()
+        lookahead_hat = self.Initialize_gradients_to_zeros()
+        
+        epsilon = 1e-8 # This is for mathematical stability 
+
+        lookahead_history = self.Initialize_gradients_to_zeros()
+
+        num_points_seen = 0
+
+        for epoch in range(self.epochs):
+            
+            grads_wandb = self.Initialize_gradients_to_zeros()
+            
+
+            for x,y in zip(train_X,train_Y):
+
+                activations_A , activations_H = self.forward_pass(x)
+                gradients = self.back_propagation(y , activations_A ,activations_H )
+
+            num_points_seen += 1
+
+            if (num_points_seen % self.mini_batch_size) == 0 :
+            
+                for key in grads_wandb:
+                    grads_wandb[key]+= gradients[key]
                 
+                for key in moment:
+                    moment[key] = beta1*moment[key] + ((1-beta1)*grads_wandb[key])
+                for key in lookahead[key]:
+                    lookahead[key] = beta2*lookahead[key] + ((1-beta2)*np.square(grads_wandb[key]))
 
+                for key in moment_hat:
+                    moment_hat[key] = moment[key]/(1 - np.power(beta1,epoch+1))
+                for key in lookahead_hat[key]:
+                    lookahead_hat[key] = lookahead[key]/(1 - np.power(beta2,epoch+1))
+                
+                for key in self.params:
+                    self.params[key] = self.params[key] - (self.lr/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+            
+                for key in lookahead_history:
+                    lookahead_history[key] = lookahead[key]
+
+                grads_wandb = self.Initialize_gradients_to_zeros()
+
+            acc ,loss = self.evaluate_model_performance(train_X,train_Y)
+            print('Accuracy = ', acc ,"Loss : ",loss)
 
                 
 
@@ -459,4 +534,21 @@ class NN():
         return accuracy,loss
 
 
-        
+    def fit(self,train_X ,train_Y):
+
+        if self.optimiser == 'vanilla_GD':
+            self.vanilla_GD(train_X,train_Y)
+        elif self.optimiser == 'sgd':
+            self.sgd(train_X,train_Y)
+        elif self.optimiser == 'mgd':
+            self.mgd(train_X,train_Y)
+        elif self.optimiser == 'nag':
+            self.nag(train_X,train_Y)
+        elif self.optimiser == 'rms_prop':
+            self.rms_prop(train_X,train_Y)
+        elif self.optimiser == 'adam':
+            self.adam(train_X,train_Y)
+        elif self.optimiser == 'nadam':
+            self.nadam(train_X,train_Y)
+        else:
+            return "Error in fit function. Optimiser Value must be specified"

@@ -1,0 +1,17 @@
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:437: RuntimeWarning: invalid value encountered in sqrt
+  self.params[key] = self.params[key] - (self.lr/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+
+
+
+60000it [00:06, 9199.91it/s]
+Accuracy =  0.1 Loss :  nan
+
+
+
+60000it [00:05, 11201.18it/s]
+Accuracy =  0.1 Loss :  nan
+
+
+58929it [00:05, 10527.93it/s]
+
+60000it [00:05, 10332.44it/s]
