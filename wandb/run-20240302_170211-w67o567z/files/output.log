@@ -1,0 +1,47 @@
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+60000it [00:05, 10056.63it/s]
+Accuracy =  0.27513333333333334 Loss :  inf
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:170: RuntimeWarning: overflow encountered in square
+  grad['a'+ str(i-1)] = grad['h'+ str(i-1)] * (tmp/((tmp+1)**2))
+/home/sandeep/Documents/IITM/Deep Learning/activations.py:13: RuntimeWarning: overflow encountered in exp
+  return 1.0/(1.0 + np.exp(-x)) # 1.0 is for floating for accuracy
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:168: RuntimeWarning: overflow encountered in exp
+  tmp = np.exp(-activation_A['a'+str(i-1)])
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:170: RuntimeWarning: invalid value encountered in divide
+  grad['a'+ str(i-1)] = grad['h'+ str(i-1)] * (tmp/((tmp+1)**2))
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+52773it [00:05, 10528.37it/s]
+
+60000it [00:06, 9790.90it/s]
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+40420it [00:04, 10136.12it/s]
+
+60000it [00:06, 9597.68it/s]
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+42279it [00:04, 10293.05it/s]
+
+60000it [00:06, 9138.41it/s]
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 118, in <module>
+    model.mgd(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 258, in mgd
+    grads_wandb[key]+=gradients[key]
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 118, in <module>
+    model.mgd(train_X,train_y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 258, in mgd
+    grads_wandb[key]+=gradients[key]
+KeyboardInterrupt

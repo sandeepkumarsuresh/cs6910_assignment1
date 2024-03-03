@@ -1,0 +1,42 @@
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+60000it [00:07, 8080.37it/s]
+Accuracy =  0.5458166666666666 Loss :  inf
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+
+
+57232it [00:10, 3025.52it/s]
+
+60000it [00:11, 5224.85it/s]
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+49695it [00:05, 10017.26it/s]
+
+60000it [00:06, 8670.94it/s]
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+
+
+58919it [00:11, 963.44it/s]
+
+60000it [00:13, 4607.48it/s]
+0it [00:00, ?it/s]/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:100: RuntimeWarning: divide by zero encountered in log
+  return -np.log(p_k)
+
+
+
+49306it [00:06, 6852.98it/s]
+
+60000it [00:07, 8092.06it/s]

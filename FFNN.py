@@ -33,7 +33,7 @@ class NN():
     """
     Initializing the number and the size of each hidden layers
     """
-    def __init__(self,n_hidden_layers,s_hidden_layer,lr=1,mini_batch_size=64):
+    def __init__(self,n_hidden_layers,s_hidden_layer,lr=0.001,mini_batch_size=64):
         # Initializing the Constructor
         self.n_hidden_layers = n_hidden_layers # Number of hidden layers
         self.s_hidden_layer = s_hidden_layer # Size of the hidden layers
@@ -95,8 +95,11 @@ class NN():
         L(t,p) = -tklog(pk) = -log(pk)
 
         """
+        epsilon = 1e-9 
         max_index = np.argmax(y_truth)
         p_k = y_pred[max_index]
+        if p_k <= 0:
+            p_k += epsilon
         return -np.log(p_k)
         
 
@@ -434,16 +437,18 @@ class NN():
             _ , activations_H = self.forward_pass(x)
             
             # output for the last layer
-            pred = np.argmax(activations_H['h'+ str(self.n_hidden_layers -1 )])
+            # pred = np.argmax(activations_H['h'+ str(self.n_hidden_layers -1 )])
+            pred = (activations_H['h'+ str(self.n_hidden_layers -1 )])
+
             y_truth = np.argmax(y.reshape(len(y),1))
 
             # print('y_truth',y_truth)
             # print('pred',pred)
             
-            pred_labels.append(pred)
+            pred_labels.append(np.argmax(pred))
             truth_labels.append(y_truth)
             # predictions.append(pred == y_truth)
-            cumullative_loss.append(self.compute_loss(pred , y))
+            cumullative_loss.append(self.compute_loss(y,pred))
 
 
         

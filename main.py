@@ -39,11 +39,11 @@ if __name__ == '__main__':
             plt.show()
 
     """
-    # wandb.login()
+    wandb.login()
 
-    # run = wandb.init(
-    #     project ="test"
-    # )  
+    run = wandb.init(
+        project ="test"
+    )  
 
     # indices = [list(train_y).index(i) for i in range(10)]
     # images = []
@@ -114,10 +114,10 @@ if __name__ == '__main__':
 
     # Forward Pass
 
-    # model.do_vanilla_GD(train_X,train_y)
-    # model.mgd(train_X,train_y)
-    model.nag(train_X,train_y)
-    # model.sgd(train_X,train_y)
+#     model.do_vanilla_GD(train_X,train_y)
+#     model.mgd(train_X,train_y)
+#     model.nag(train_X,train_y)
+    model.sgd(train_X,train_y)
 
 
 
