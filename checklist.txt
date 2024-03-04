@@ -1,0 +1,77 @@
+wandb:                                                                                
+wandb: 🚀 View run lunar-sweep-3 at: https://wandb.ai/ee23s059/test/runs/trnvff7f
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240304_235254-trnvff7f/logs
+wandb: Agent Starting Run: fx16k47r with config:
+wandb:  activation_para: relu
+wandb:  batch: 32
+wandb:  epochs: 5
+wandb:  lr: 0.0001
+wandb:  n_hidden_layers: 3
+wandb:  optimiser: adam
+wandb:  s_hidden_layers: 128
+wandb:  weight_decay: 0.5
+wandb:  weight_para: random
+/usr/lib/python3/dist-packages/requests/__init__.py:87: RequestsDependencyWarning: urllib3 (2.2.0) or chardet (4.0.0) doesn't match a supported version!
+  warnings.warn("urllib3 ({}) or chardet ({}) doesn't match a supported "
+wandb: Tracking run with wandb version 0.16.3
+wandb: Run data is saved locally in /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240304_235510-fx16k47r
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run graceful-sweep-4
+wandb: ⭐️ View project at https://wandb.ai/ee23s059/test
+wandb: 🧹 View sweep at https://wandb.ai/ee23s059/test/sweeps/0kike7oa
+wandb: 🚀 View run at https://wandb.ai/ee23s059/test/runs/fx16k47r
+hidden_layer:3_mini_batch_size:32_activationsrelu
+wandb:                                                                                
+wandb: 🚀 View run graceful-sweep-4 at: https://wandb.ai/ee23s059/test/runs/fx16k47r
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240304_235510-fx16k47r/logs
+Run fx16k47r errored:
+Traceback (most recent call last):
+  File "/home/sandeep/.local/lib/python3.10/site-packages/wandb/agents/pyagent.py", line 308, in _run_job
+    self._function()
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 77, in do_sweep
+    model.nadam(train_X_split,train_Y_split)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 470, in nadam
+    gradients = self.back_propagation(y , activations_A ,activations_H )
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 155, in back_propagation
+    grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) #* y_pred * (1 - y_pred)
+ValueError: operands could not be broadcast together with shapes (32,1) (10,1) 
+
+
+
+wandb: Agent Starting Run: cru8i67o with config:
+wandb:  activation_para: sigmoid
+wandb:  batch: 16
+wandb:  epochs: 10
+wandb:  lr: 0.001
+wandb:  n_hidden_layers: 5
+wandb:  optimiser: sgd
+wandb:  s_hidden_layers: 128
+wandb:  weight_decay: 0
+wandb:  weight_para: Xavier
+/usr/lib/python3/dist-packages/requests/__init__.py:87: RequestsDependencyWarning: urllib3 (2.2.0) or chardet (4.0.0) doesn't match a supported version!
+  warnings.warn("urllib3 ({}) or chardet ({}) doesn't match a supported "
+wandb: Tracking run with wandb version 0.16.3
+wandb: Run data is saved locally in /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240304_235527-cru8i67o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run skilled-sweep-5
+wandb: ⭐️ View project at https://wandb.ai/ee23s059/test
+wandb: 🧹 View sweep at https://wandb.ai/ee23s059/test/sweeps/0kike7oa
+wandb: 🚀 View run at https://wandb.ai/ee23s059/test/runs/cru8i67o
+hidden_layer:5_mini_batch_size:16_activationssigmoid
+wandb:                                                                                
+wandb: 🚀 View run skilled-sweep-5 at: https://wandb.ai/ee23s059/test/runs/cru8i67o
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240304_235527-cru8i67o/logs
+Run cru8i67o errored:
+Traceback (most recent call last):
+  File "/home/sandeep/.local/lib/python3.10/site-packages/wandb/agents/pyagent.py", line 308, in _run_job
+    self._function()
+  File "/home/sandeep/Documents/IITM/Deep Learning/main.py", line 68, in do_sweep
+    model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 41, in __init__
+    self.params = self.Initialize_Params() # Initalizing the weights and biases
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 57, in Initialize_Params
+    intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.1
+IndexError: list index out of range

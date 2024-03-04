@@ -54,7 +54,7 @@ class NN():
         intialize_weights_and_bias = {}
         for i in range(1,self.n_hidden_layers):
 
-            intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.01
+            intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.1
             intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
 
             # intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) * np.sqrt(2/(self.s_hidden_layer[i-1] + self.s_hidden_layer[i]))
@@ -200,7 +200,7 @@ class NN():
                 # For gradient Update
                 # grads  = self.update_weights_and_bias(gradients)
             # break
-            # print('gradient_update_after_each_epoch',grads)
+            print('gradient_update_after_each_epoch',gradients)
             acc ,loss = self.evaluate_model_performance(train_X,train_Y)
             print('Accuracy = ', acc ,"Loss : ",loss)
 

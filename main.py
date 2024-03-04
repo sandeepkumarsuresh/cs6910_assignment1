@@ -8,6 +8,46 @@ import wandb
 from sklearn.model_selection import train_test_split
 import yaml
 
+sweep_configuration = {
+    'method': 'bayes', #grid, random
+    'metric': {
+    'name': 'Accuracy',
+    'goal': 'maximize'   
+    },
+    'parameters': {
+        'epochs': {
+            'values': [5,10]
+        },
+        'n_hidden_layers': {
+            'values': [3,4,5]
+        },
+        's_hidden_layers': {
+            'values': [32,64,128]
+        },
+        'weight_decay': {
+            'values': [0,0.0005,0.5]
+        },
+        'lr': {
+            'values': [1e-3,1e-4]
+        },
+        'optimiser': {
+            'values': ['sgd', 'mgd', 'nag', 'rms', 'adam','nadam']
+        },
+        'batch':{
+            'values': [16,32,64]
+        },
+        'weight_para':{
+            'values': ['random','Xavier']
+        },
+        'activation_para': {
+            'values': ['tanh','sigmoid', 'relu']
+        }
+    }
+}
+sweep_id = wandb.sweep(sweep_configuration,project='test')
+
+
+
 def normalise(data):
     """
     Input will be image matrix which should be flatten
@@ -15,7 +55,34 @@ def normalise(data):
     return data/255
 
 
+
+def do_sweep():
+
+    wandb.init()
+    config = wandb.config
+    run_name = "hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)
+    print(run_name)
+    wandb.run.name = run_name
+
+    # s_of_hidden_layers = [config.s_hidden_layers]*config.n_hidden_layers
+    model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
+                     s_hidden_layer = [784 ,128, 32 , 10],
+                     epochs = config.epochs,
+                    #  optimiser=config.optimiser ,
+                     mini_batch_size=config.batch,
+                     lr = config.lr,
+                     )
+
+    # model.vanilla_GD(train_X_split,train_Y_split)
+    model.nadam(train_X_split,train_Y_split)
+
+
+
 if __name__ == '__main__':
+    
+    
+    # wandb.init()
+    # config = wandb.config
 
     (train_X, train_y), (test_X, test_y) = fashion_mnist.load_data()
     class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
@@ -102,37 +169,41 @@ if __name__ == '__main__':
     #     },
     # }
 
-    sweep_config_path = 'sweep_config.yaml'
-    with open(sweep_config_path, 'r') as file:
-        sweep_config = yaml.safe_load(file)
+    # sweep_config_path = 'sweep_config.yaml'
+    # with open(sweep_config_path, 'r') as file:
+    #     sweep_config = yaml.safe_load(file)
     
 
 
-    wandb.init(
-        project="test",
-        config=sweep_config
-    )
-    config = wandb.config
+    wandb.agent(sweep_id ,function=do_sweep,count=100)
+    # wandb.finish()
+    # print(sweep_configuration)
+
+    # wandb.init(
+    #     project="test",
+    #     config=sweep_configuration
+    # )
+    # config = wandb.config
     
-    epochs = config.epochs
-    n_hidden_layers = config.n_hidden_layers
-    s_hidden_layers = config.s_hidden_layers
-    weight_decay = config.weight_decay
-    lr = config.lr
-    optimiser = config.optimiser
-    mini_batch_size = config.mini_batch_size
-    weight_initialization = config.weight_initialization
-    activations = config.activations
+    # epochs = config.epochs
+    # n_hidden_layers = config.n_hidden_layers
+    # s_hidden_layers = config.s_hidden_layers
+    # weight_decay = config.weight_decay
+    # lr = config.lr
+    # optimiser = config.optimiser
+    # mini_batch_size = config.mini_batch_size
+    # weight_initialization = config.weight_initialization
+    # activations = config.activations
     
-    print("Epochs Values:", epochs)
-    print("N Hidden Layers Values:", n_hidden_layers)
-    print("S Hidden Layers Values:", s_hidden_layers)
-    print("Weight Decay Values:", weight_decay)
-    print("Learning Rate Values:", lr)
-    print("Optimiser Values:", optimiser)
-    print("Batch Values:", mini_batch_size)
-    print("Weight Parameter Values:", weight_initialization)
-    print("Activation Parameter Values:", activations)
+    # print("Epochs Values:", epochs)
+    # print("N Hidden Layers Values:", n_hidden_layers)
+    # print("S Hidden Layers Values:", s_hidden_layers)
+    # print("Weight Decay Values:", weight_decay)
+    # print("Learning Rate Values:", lr)
+    # print("Optimiser Values:", optimiser)
+    # print("Batch Values:", mini_batch_size)
+    # print("Weight Parameter Values:", weight_initialization)
+    # print("Activation Parameter Values:", activations)
 
 
 
@@ -142,21 +213,21 @@ if __name__ == '__main__':
     Passing the Data into the Feed Forward Network
     """
     # initializing the model
-    model = FFNN.NN(n_hidden_layers=4 , s_hidden_layer = [784 ,128, 32 , 10] ,optimiser=optimiser , mini_batch_size=mini_batch_size)
+    # model = FFNN.NN(n_hidden_layers=4 , s_hidden_layer = [784 ,128, 32 , 10] )#,optimiser=optimiser , mini_batch_size=mini_batch_size)
 
-    sweep_id = wandb.sweep(sweep_config)
+    # sweep_id = wandb.sweep(sweep_configuration)
 
-    wandb.agent(sweep_id,)
+    # wandb.agent(sweep_id,model,count=10)
 
     # Forward Pass
 
-    # model.do_vanilla_GD(train_X,train_y)
+    # model.vanilla_GD(train_X,train_y)
 #     model.mgd(train_X,train_y)
 #     model.nag(train_X,train_y)
     # model.sgd(train_X,train_y)
     # model.rms_prop(train_X,train_y)
     # model.adam(train_X,train_y)
-    model.nadam(train_X_split,train_Y_split)
+    # model.nadam(train_X_split,train_Y_split)
 
 
 
