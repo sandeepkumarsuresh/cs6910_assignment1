@@ -33,8 +33,9 @@ class NN():
     """
     Initializing the number and the size of each hidden layers
     """
-    def __init__(self,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3):
+    def __init__(self,size_of_network,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3):
         # Initializing the Constructor
+        self.size_of_network = size_of_network
         self.n_hidden_layers = n_hidden_layers # Number of hidden layers
         self.s_hidden_layer = s_hidden_layer # Size of the hidden layers
         self.lr = lr # Making the learning rate to some value
@@ -52,7 +53,7 @@ class NN():
         """
         
         intialize_weights_and_bias = {}
-        for i in range(1,self.n_hidden_layers):
+        for i in range(1,self.size_of_network):
 
             intialize_weights_and_bias["W"+str(i)] = np.random.randn(self.s_hidden_layer[i],self.s_hidden_layer[i-1]) *0.1
             intialize_weights_and_bias["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
@@ -70,7 +71,7 @@ class NN():
         the gradients
         """
         grads_to_zero = {}
-        for i in range(1,self.n_hidden_layers):
+        for i in range(1,self.size_of_network):
             grads_to_zero["W"+str(i)] = np.zeros((self.s_hidden_layer[i],self.s_hidden_layer[i-1]))
             grads_to_zero["B"+str(i)] = np.zeros((self.s_hidden_layer[i],1))
         return grads_to_zero
@@ -118,12 +119,12 @@ class NN():
         activation_A , activation_H = {} , {}
         activation_H['h0'] = x.reshape(x.shape[0],1)
         # print(activation_H['h0'].shape)
-        for i in range(1 , self.n_hidden_layers-1):
+        for i in range(1 , self.size_of_network-1):
             activation_A['a'+str(i)] = (self.params['W'+str(i)] @ activation_H['h'+str(i-1)] ) + self.params["B"+str(i)]  # o = W_1*x + B_1
             activation_H['h'+str(i)] = sigmoid_activation( activation_A['a'+str(i)]) # y = sigmoid(W_1*x + B_1) 
 
-        activation_A['a'+str(self.n_hidden_layers-1)] = self.params["W"+str(self.n_hidden_layers-1)] @ activation_H['h'+str(self.n_hidden_layers -2)]+ self.params["B"+str(self.n_hidden_layers-1)]
-        activation_H['h'+str(self.n_hidden_layers-1)] = softmax(activation_A['a'+str(self.n_hidden_layers-1)])
+        activation_A['a'+str(self.size_of_network-1)] = self.params["W"+str(self.size_of_network-1)] @ activation_H['h'+str(self.size_of_network -2)]+ self.params["B"+str(self.size_of_network-1)]
+        activation_H['h'+str(self.size_of_network-1)] = softmax(activation_A['a'+str(self.size_of_network-1)])
 
         # y_hat = activation_H['h'+str(self.n_hidden_layers-1)] # Final output pred
 
@@ -144,19 +145,19 @@ class NN():
         """
         grad = {}
         # Here we are calculating the squared error loss
-        y_pred = activation_H['h'+str(self.n_hidden_layers-1)] # Final ouput during forward pass
+        y_pred = activation_H['h'+str(self.size_of_network-1)] # Final ouput during forward pass
         y_truth = y.reshape(-1 , 1 ) # reshape to column 1 with any number of rows
 
         # print('ypred',y_pred.shape)
         # print('ytruth',y_truth.shape)
 
         # gradient of L th Layer
-        # grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) * y_pred * (1 - y_pred)
-        grad['a'+str(self.n_hidden_layers - 1 )] = (y_pred - y_truth) #* y_pred * (1 - y_pred)
+        # grad['a'+str(self.size_of_network - 1 )] = (y_pred - y_truth) * y_pred * (1 - y_pred)
+        grad['a'+str(self.size_of_network - 1 )] = (y_pred - y_truth) #* y_pred * (1 - y_pred)
 
         
         # Callculating gradient from L to 1
-        for i in range(self.n_hidden_layers-1 , 0 , -1):
+        for i in range(self.size_of_network-1 , 0 , -1):
             
             
             # Calculating wrt Weights and B
@@ -513,7 +514,7 @@ class NN():
             
             # output for the last layer
             # pred = np.argmax(activations_H['h'+ str(self.n_hidden_layers -1 )])
-            pred = (activations_H['h'+ str(self.n_hidden_layers -1 )])
+            pred = (activations_H['h'+ str(self.size_of_network -1 )])
 
             y_truth = np.argmax(y.reshape(len(y),1))
 

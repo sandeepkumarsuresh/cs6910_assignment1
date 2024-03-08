@@ -64,17 +64,23 @@ def do_sweep():
     print(run_name)
     wandb.run.name = run_name
 
-    # s_of_hidden_layers = [config.s_hidden_layers]*config.n_hidden_layers
+    s_of_hidden_layers = [784]+[config.s_hidden_layers]*config.n_hidden_layers + [10]
+    size_of_network = len(s_of_hidden_layers)
+    # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
+    # s_of_hidden_layers_.append([10])
+    print('s_of_hidden_layers',s_of_hidden_layers)
     model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
-                     s_hidden_layer = [784 ,128, 32 , 10],
+                    #  s_hidden_layer = [784 ,128, 32 , 10],
+                    size_of_network=size_of_network,
+                    s_hidden_layer = s_of_hidden_layers,
                      epochs = config.epochs,
-                    #  optimiser=config.optimiser ,
+                     optimiser=config.optimiser ,
                      mini_batch_size=config.batch,
                      lr = config.lr,
                      )
 
-    # model.vanilla_GD(train_X_split,train_Y_split)
-    model.nadam(train_X_split,train_Y_split)
+    model.vanilla_GD(train_X_split,train_Y_split)
+    # model.nadam(train_X_split,train_Y_split)
 
 
 
@@ -174,9 +180,9 @@ if __name__ == '__main__':
     #     sweep_config = yaml.safe_load(file)
     
 
-
+    
     wandb.agent(sweep_id ,function=do_sweep,count=100)
-    # wandb.finish()
+    wandb.finish()
     # print(sweep_configuration)
 
     # wandb.init(

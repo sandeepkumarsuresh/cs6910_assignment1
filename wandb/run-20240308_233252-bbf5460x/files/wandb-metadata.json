@@ -1,0 +1,100 @@
+{
+    "os": "Linux-6.5.0-21-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-03-08T18:02:54.145512",
+    "startedAt": "2024-03-08T18:02:52.938343",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/sandeep/Documents/IITM/Deep Learning/main.py",
+    "codePathLocal": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/sandeepkumarsuresh/cs6910_assignment1.git",
+        "commit": "d5162dd4842130b13ded38b3767a7e63e717db21"
+    },
+    "email": "sandeepsuresh619@gmail.com",
+    "root": "/home/sandeep/Documents/IITM/Deep Learning",
+    "host": "sandeep-Inspiron-5415",
+    "username": "sandeep",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 1430.497166666667,
+        "min": 400.0,
+        "max": 4056.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 2694.913,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 1359.991,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 400.0,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 1347.341,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 1416.351,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 2695.095,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 2695.108,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 2313.504,
+            "min": 400.0,
+            "max": 4056.0
+        },
+        {
+            "current": 2654.302,
+            "min": 400.0,
+            "max": 4056.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 27.33292007446289,
+            "used": 16.146289825439453
+        }
+    },
+    "memory": {
+        "total": 7.103443145751953
+    }
+}
