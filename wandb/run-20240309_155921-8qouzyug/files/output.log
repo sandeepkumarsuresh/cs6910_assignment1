@@ -1,0 +1,2 @@
+hidden_layer:5_mini_batch_size:32_activationstanh
+s_of_hidden_layers [784, 64, 64, 64, 64, 64, 10]

@@ -1,0 +1,20 @@
+wandb_version: 1
+
+activation_para:
+  value: sigmoid
+batch:
+  value: 16
+epochs:
+  value: 3
+lr:
+  value: 0.001
+n_hidden_layers:
+  value: 4
+optimiser:
+  value: sgd
+s_hidden_layers:
+  value: 32
+weight_decay:
+  value: 0.5
+weight_para:
+  value: Xavier

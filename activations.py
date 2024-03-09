@@ -13,16 +13,16 @@ def sigmoid_activation(x , derivative = False):
         return 1.0/(1.0 + np.exp(-x)) # 1.0 is for floating for accuracy
 
 def tanh_activation(x,derivative = False):
-    actvn =  (np.exp(x) - np.exp(-x))/(np.exp(x) + np.exp(-x))
+    actvn = np.tanh(x)
     if derivative:
         return 1 - np.square(actvn)
     else:
-        actvn
+        return actvn
 def relu_activation(x , derivative = False):
     if derivative:
         return np.heaviside(x,0.0)
     else:
-        return max(0.0,x)
+        return np.maximum(0.0,x)
 
 def softmax(x):
     # returns the output probabilities

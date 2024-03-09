@@ -11,12 +11,12 @@ import yaml
 sweep_configuration = {
     'method': 'bayes', #grid, random
     'metric': {
-    'name': 'Accuracy',
+    'name': 'val_Accuracy',
     'goal': 'maximize'   
     },
     'parameters': {
         'epochs': {
-            'values': [5,10]
+            'values': [3,5]
         },
         'n_hidden_layers': {
             'values': [3,4,5]
@@ -28,7 +28,7 @@ sweep_configuration = {
             'values': [0,0.0005,0.5]
         },
         'lr': {
-            'values': [1e-3,1e-4]
+            'values': [1e-2,1e-3,]
         },
         'optimiser': {
             'values': ['sgd', 'mgd', 'nag', 'rms', 'adam','nadam']
@@ -77,9 +77,14 @@ def do_sweep():
                      optimiser=config.optimiser ,
                      mini_batch_size=config.batch,
                      lr = config.lr,
+                     weight_init_params = config.weight_para,
+                     activation=config.activation_para
                      )
+    
+    # Call model.fit here
+    model.fit(train_X_split,train_Y_split,val_X,val_Y)
 
-    model.vanilla_GD(train_X_split,train_Y_split)
+    # model.vanilla_GD(train_X_split,train_Y_split)
     # model.nadam(train_X_split,train_Y_split)
 
 

@@ -1,0 +1,6 @@
+hidden_layer:3_mini_batch_size:32_activationssigmoid
+s_of_hidden_layers [784, 64, 64, 64, 10]
+
+
+52826it [00:05, 10530.50it/s]
+54000it [00:05, 9522.24it/s]

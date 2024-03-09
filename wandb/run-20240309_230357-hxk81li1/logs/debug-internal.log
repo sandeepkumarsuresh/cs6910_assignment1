@@ -1,0 +1,349 @@
+2024-03-09 23:03:57,553 INFO    StreamThr :409526 [internal.py:wandb_internal():86] W&B internal server running at pid: 409526, started at: 2024-03-09 23:03:57.552376
+2024-03-09 23:03:57,557 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status
+2024-03-09 23:03:57,563 INFO    WriterThread:409526 [datastore.py:open_for_write():87] open: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/run-hxk81li1.wandb
+2024-03-09 23:03:57,565 DEBUG   SenderThread:409526 [sender.py:send():382] send: header
+2024-03-09 23:03:57,572 DEBUG   SenderThread:409526 [sender.py:send():382] send: run
+2024-03-09 23:03:58,408 INFO    SenderThread:409526 [dir_watcher.py:__init__():211] watching files in: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files
+2024-03-09 23:03:58,409 INFO    SenderThread:409526 [sender.py:_start_run_threads():1136] run started: hxk81li1 with start time 1710005637.552032
+2024-03-09 23:03:58,414 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: check_version
+2024-03-09 23:03:58,415 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: check_version
+2024-03-09 23:03:58,647 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: run_start
+2024-03-09 23:03:58,648 DEBUG   HandlerThread:409526 [system_info.py:__init__():27] System info init
+2024-03-09 23:03:58,648 DEBUG   HandlerThread:409526 [system_info.py:__init__():42] System info init done
+2024-03-09 23:03:58,648 INFO    HandlerThread:409526 [system_monitor.py:start():194] Starting system monitor
+2024-03-09 23:03:58,648 INFO    SystemMonitor:409526 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-09 23:03:58,649 INFO    HandlerThread:409526 [system_monitor.py:probe():214] Collecting system info
+2024-03-09 23:03:58,650 INFO    SystemMonitor:409526 [interfaces.py:start():190] Started cpu monitoring
+2024-03-09 23:03:58,651 INFO    SystemMonitor:409526 [interfaces.py:start():190] Started disk monitoring
+2024-03-09 23:03:58,653 INFO    SystemMonitor:409526 [interfaces.py:start():190] Started memory monitoring
+2024-03-09 23:03:58,655 INFO    SystemMonitor:409526 [interfaces.py:start():190] Started network monitoring
+2024-03-09 23:03:58,664 DEBUG   HandlerThread:409526 [system_info.py:probe():151] Probing system
+2024-03-09 23:03:58,669 DEBUG   HandlerThread:409526 [system_info.py:_probe_git():136] Probing git
+2024-03-09 23:03:58,680 DEBUG   HandlerThread:409526 [system_info.py:_probe_git():144] Probing git done
+2024-03-09 23:03:58,680 DEBUG   HandlerThread:409526 [system_info.py:probe():199] Probing system done
+2024-03-09 23:03:58,680 DEBUG   HandlerThread:409526 [system_monitor.py:probe():223] {'os': 'Linux-6.5.0-21-generic-x86_64-with-glibc2.35', 'python': '3.10.12', 'heartbeatAt': '2024-03-09T17:33:58.664547', 'startedAt': '2024-03-09T17:33:57.542286', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/sandeep/Documents/IITM/Deep Learning/main.py', 'codePathLocal': 'main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/sandeepkumarsuresh/cs6910_assignment1.git', 'commit': '6c035f6dfa6e014afa66f76cc120032a0ffdf0a8'}, 'email': 'sandeepsuresh619@gmail.com', 'root': '/home/sandeep/Documents/IITM/Deep Learning', 'host': 'sandeep-Inspiron-5415', 'username': 'sandeep', 'executable': '/usr/bin/python3', 'cpu_count': 6, 'cpu_count_logical': 12, 'cpu_freq': {'current': 1727.0758333333333, 'min': 400.0, 'max': 4056.0}, 'cpu_freq_per_core': [{'current': 2113.628, 'min': 400.0, 'max': 4056.0}, {'current': 2232.385, 'min': 400.0, 'max': 4056.0}, {'current': 2692.284, 'min': 400.0, 'max': 4056.0}, {'current': 400.0, 'min': 400.0, 'max': 4056.0}, {'current': 2302.501, 'min': 400.0, 'max': 4056.0}, {'current': 400.0, 'min': 400.0, 'max': 4056.0}, {'current': 2690.119, 'min': 400.0, 'max': 4056.0}, {'current': 400.0, 'min': 400.0, 'max': 4056.0}, {'current': 2287.123, 'min': 400.0, 'max': 4056.0}, {'current': 400.0, 'min': 400.0, 'max': 4056.0}, {'current': 1347.318, 'min': 400.0, 'max': 4056.0}, {'current': 2072.851, 'min': 400.0, 'max': 4056.0}], 'disk': {'/': {'total': 27.33292007446289, 'used': 16.45413589477539}}, 'memory': {'total': 7.103443145751953}}
+2024-03-09 23:03:58,680 INFO    HandlerThread:409526 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-09 23:03:58,680 INFO    HandlerThread:409526 [system_monitor.py:probe():227] Publishing system info
+2024-03-09 23:03:58,681 INFO    HandlerThread:409526 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-09 23:03:58,686 DEBUG   SenderThread:409526 [sender.py:send():382] send: files
+2024-03-09 23:03:58,686 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-09 23:03:58,694 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-09 23:03:58,695 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: python_packages
+2024-03-09 23:03:58,695 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:03:58,696 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:03:58,699 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:03:59,307 DEBUG   SenderThread:409526 [sender.py:send():382] send: telemetry
+2024-03-09 23:03:59,316 DEBUG   SenderThread:409526 [sender.py:send():382] send: telemetry
+2024-03-09 23:03:59,316 DEBUG   SenderThread:409526 [sender.py:send():382] send: run
+2024-03-09 23:03:59,410 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/config.yaml
+2024-03-09 23:03:59,411 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_created():271] file/dir created: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-metadata.json
+2024-03-09 23:03:59,411 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_created():271] file/dir created: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:03:59,411 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_created():271] file/dir created: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/requirements.txt
+2024-03-09 23:03:59,639 INFO    SenderThread:409526 [sender.py:send_run():1010] updated run: hxk81li1
+2024-03-09 23:04:00,030 INFO    wandb-upload_0:409526 [upload_job.py:push():131] Uploaded file /tmp/tmpzr68g2n9wandb/kngo5nhs-wandb-metadata.json
+2024-03-09 23:04:01,409 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:04:02,640 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:07,640 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:12,641 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:13,695 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:04:13,695 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:04:13,737 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:04:18,160 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:23,160 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:28,165 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:28,695 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:04:28,695 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:04:28,737 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:04:29,419 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/config.yaml
+2024-03-09 23:04:34,019 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:39,020 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:43,696 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:04:43,696 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:04:43,738 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:04:44,022 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:49,023 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:54,024 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:57,428 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:04:58,655 DEBUG   SystemMonitor:409526 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-09 23:04:58,656 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:04:58,696 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:04:58,696 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:04:58,699 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:04:59,047 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:04:59,429 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:05:01,429 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:05:03,432 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:05:04,142 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:05,112 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-09 23:05:05,113 DEBUG   SenderThread:409526 [sender.py:send():382] send: history
+2024-03-09 23:05:05,114 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: summary_record
+2024-03-09 23:05:05,114 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:05:05,432 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:05:05,432 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_created():271] file/dir created: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json
+2024-03-09 23:05:07,433 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:05:10,115 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:13,696 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:05:13,696 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:05:13,699 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:05:16,063 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:21,064 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:26,064 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:28,657 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:05:28,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:05:28,697 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:05:28,737 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:05:31,068 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:36,068 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:41,069 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:43,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:05:43,697 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:05:43,737 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:05:47,066 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:52,067 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:57,068 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:05:58,657 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:05:58,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:05:58,697 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:05:58,737 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:06:02,084 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:03,453 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:06:05,454 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:06:07,169 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:07,454 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:06:09,455 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:06:11,455 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:06:12,222 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:12,486 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-09 23:06:12,486 DEBUG   SenderThread:409526 [sender.py:send():382] send: history
+2024-03-09 23:06:12,487 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: summary_record
+2024-03-09 23:06:12,487 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:06:13,456 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:06:13,456 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json
+2024-03-09 23:06:13,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:06:13,697 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:06:13,700 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:06:18,069 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:23,070 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:28,073 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:28,658 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:06:28,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:06:28,697 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:06:28,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:06:33,126 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:38,127 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:43,127 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:43,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:06:43,698 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:06:43,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:06:49,074 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:54,075 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:06:58,658 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:06:58,698 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:06:58,698 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:06:58,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:07:00,023 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:05,024 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:10,025 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:11,475 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:13,476 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:13,697 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:07:13,697 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:07:13,700 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:07:15,112 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:15,477 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:17,477 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:19,478 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:20,114 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:20,356 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-09 23:07:20,357 DEBUG   SenderThread:409526 [sender.py:send():382] send: history
+2024-03-09 23:07:20,357 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: summary_record
+2024-03-09 23:07:20,357 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:07:20,479 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json
+2024-03-09 23:07:21,479 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:22,479 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:07:25,358 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:28,659 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:07:28,698 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:07:28,698 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:07:28,700 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:07:31,128 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:36,129 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:41,132 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:43,698 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:07:43,699 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:07:43,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:07:46,181 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:51,182 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:56,183 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:07:58,660 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:07:58,698 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:07:58,698 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:07:58,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:08:02,030 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:07,031 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:12,032 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:13,698 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:08:13,698 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:08:13,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:08:17,087 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:19,499 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:21,500 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:22,232 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:23,500 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:25,501 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:27,311 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:27,401 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-09 23:08:27,402 DEBUG   SenderThread:409526 [sender.py:send():382] send: history
+2024-03-09 23:08:27,402 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: summary_record
+2024-03-09 23:08:27,402 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:08:27,502 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:27,502 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json
+2024-03-09 23:08:28,660 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:08:28,698 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:08:28,699 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:08:28,701 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:08:29,503 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:30,503 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:08:33,034 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:38,035 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:43,036 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:43,699 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:08:43,699 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:08:43,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:08:48,085 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:53,086 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:58,087 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:08:58,661 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:08:58,699 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:08:58,699 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:08:58,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:09:03,139 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:08,140 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:13,141 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:13,700 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:09:13,700 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:09:13,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:09:18,191 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:23,192 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:28,192 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:28,663 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:09:28,700 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-09 23:09:28,700 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: stop_status
+2024-03-09 23:09:28,741 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-09 23:09:31,525 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:33,242 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:33,526 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:35,526 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:37,527 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:38,296 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:39,528 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:41,528 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:42,533 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-09 23:09:42,534 DEBUG   SenderThread:409526 [sender.py:send():382] send: history
+2024-03-09 23:09:42,534 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: summary_record
+2024-03-09 23:09:42,535 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:09:42,535 DEBUG   SenderThread:409526 [sender.py:send():382] send: telemetry
+2024-03-09 23:09:42,536 DEBUG   SenderThread:409526 [sender.py:send():382] send: exit
+2024-03-09 23:09:42,536 INFO    SenderThread:409526 [sender.py:send_exit():589] handling exit code: 0
+2024-03-09 23:09:42,536 INFO    SenderThread:409526 [sender.py:send_exit():591] handling runtime: 343
+2024-03-09 23:09:42,536 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:09:42,537 INFO    SenderThread:409526 [sender.py:send_exit():597] send defer
+2024-03-09 23:09:42,537 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,537 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-09 23:09:42,537 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,537 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-03-09 23:09:42,537 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 1
+2024-03-09 23:09:42,537 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,537 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-09 23:09:42,538 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,538 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-03-09 23:09:42,538 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 2
+2024-03-09 23:09:42,538 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,538 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-09 23:09:42,538 INFO    HandlerThread:409526 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-09 23:09:42,538 DEBUG   SystemMonitor:409526 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-09 23:09:42,538 DEBUG   SystemMonitor:409526 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-09 23:09:42,539 INFO    HandlerThread:409526 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-09 23:09:42,539 INFO    HandlerThread:409526 [interfaces.py:finish():202] Joined disk monitor
+2024-03-09 23:09:42,539 INFO    HandlerThread:409526 [interfaces.py:finish():202] Joined memory monitor
+2024-03-09 23:09:42,539 INFO    HandlerThread:409526 [interfaces.py:finish():202] Joined network monitor
+2024-03-09 23:09:42,540 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,540 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-03-09 23:09:42,540 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 3
+2024-03-09 23:09:42,540 DEBUG   SenderThread:409526 [sender.py:send():382] send: stats
+2024-03-09 23:09:42,540 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,540 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-09 23:09:42,540 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,540 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-03-09 23:09:42,540 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 4
+2024-03-09 23:09:42,541 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,541 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-09 23:09:42,541 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,541 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-03-09 23:09:42,541 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 5
+2024-03-09 23:09:42,541 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,541 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-09 23:09:42,541 DEBUG   SenderThread:409526 [sender.py:send():382] send: summary
+2024-03-09 23:09:42,542 INFO    SenderThread:409526 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-09 23:09:42,542 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,542 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-03-09 23:09:42,542 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 6
+2024-03-09 23:09:42,542 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,542 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-09 23:09:42,542 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,542 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-03-09 23:09:42,547 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:42,866 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 7
+2024-03-09 23:09:42,866 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:42,866 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-09 23:09:42,867 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:42,867 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-03-09 23:09:43,530 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:43,530 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json
+2024-03-09 23:09:43,531 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/config.yaml
+2024-03-09 23:09:43,537 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-09 23:09:44,530 INFO    Thread-13 :409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:45,182 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 8
+2024-03-09 23:09:45,182 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: poll_exit
+2024-03-09 23:09:45,183 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:45,183 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-09 23:09:45,183 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:45,184 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-03-09 23:09:45,184 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 9
+2024-03-09 23:09:45,184 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:45,184 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-09 23:09:45,184 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:45,184 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-03-09 23:09:45,184 INFO    SenderThread:409526 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-09 23:09:45,531 INFO    SenderThread:409526 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:45,532 INFO    SenderThread:409526 [dir_watcher.py:finish():388] scan: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files
+2024-03-09 23:09:45,532 INFO    SenderThread:409526 [dir_watcher.py:finish():402] scan save: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json wandb-summary.json
+2024-03-09 23:09:45,532 INFO    SenderThread:409526 [dir_watcher.py:finish():402] scan save: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/requirements.txt requirements.txt
+2024-03-09 23:09:45,535 INFO    SenderThread:409526 [dir_watcher.py:finish():402] scan save: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/config.yaml config.yaml
+2024-03-09 23:09:45,535 INFO    SenderThread:409526 [dir_watcher.py:finish():402] scan save: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-metadata.json wandb-metadata.json
+2024-03-09 23:09:45,535 INFO    SenderThread:409526 [dir_watcher.py:finish():402] scan save: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log output.log
+2024-03-09 23:09:45,538 INFO    SenderThread:409526 [sender.py:transition_state():617] send defer: 10
+2024-03-09 23:09:45,539 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: defer
+2024-03-09 23:09:45,539 INFO    HandlerThread:409526 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-09 23:09:45,539 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-09 23:09:45,540 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: defer
+2024-03-09 23:09:45,540 INFO    SenderThread:409526 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-03-09 23:09:45,540 INFO    SenderThread:409526 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-09 23:09:45,540 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: poll_exit
+2024-03-09 23:09:46,366 INFO    wandb-upload_0:409526 [upload_job.py:push():131] Uploaded file /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/wandb-summary.json
+2024-03-09 23:09:46,539 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-09 23:09:46,539 DEBUG   SenderThread:409526 [sender.py:send_request():409] send_request: poll_exit
+2024-03-09 23:09:46,652 INFO    wandb-upload_2:409526 [upload_job.py:push():131] Uploaded file /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/config.yaml
+2024-03-09 23:09:46,652 INFO    wandb-upload_3:409526 [upload_job.py:push():131] Uploaded file /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/output.log
+2024-03-09 23:09:50,541 DEBUG   HandlerThread:409526 [handler.py:handle_request():146] handle_request: status_report
+2024-03-09 23:09:50,910 WARNING StreamThr :409526 [internal.py:is_dead():414] Internal process exiting, parent pid 409340 disappeared
+2024-03-09 23:09:50,911 ERROR   StreamThr :409526 [internal.py:wandb_internal():152] Internal process shutdown.
+2024-03-09 23:09:51,541 INFO    SenderThread:409526 [sender.py:finish():1572] shutting down sender
+2024-03-09 23:09:51,542 INFO    SenderThread:409526 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-09 23:09:51,542 INFO    SenderThread:409526 [file_pusher.py:join():178] waiting for file pusher
+2024-03-09 23:09:51,542 INFO    WriterThread:409526 [datastore.py:close():296] close: /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/run-hxk81li1.wandb
+2024-03-09 23:09:51,542 INFO    HandlerThread:409526 [handler.py:finish():869] shutting down handler
+2024-03-09 23:10:07,745 INFO    wandb-upload_1:409526 [upload_job.py:push():131] Uploaded file /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240309_230357-hxk81li1/files/requirements.txt
+2024-03-09 23:10:07,948 INFO    Thread-12 (_thread_body):409526 [sender.py:transition_state():617] send defer: 11
+2024-03-09 23:10:08,065 INFO    SenderThread:409526 [file_stream.py:finish():595] file stream finish called
+2024-03-09 23:10:09,078 INFO    SenderThread:409526 [file_stream.py:finish():599] file stream finish is done

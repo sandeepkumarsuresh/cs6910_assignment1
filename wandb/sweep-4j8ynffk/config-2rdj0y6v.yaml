@@ -1,0 +1,20 @@
+wandb_version: 1
+
+activation_para:
+  value: tanh
+batch:
+  value: 32
+epochs:
+  value: 3
+lr:
+  value: 0.0001
+n_hidden_layers:
+  value: 3
+optimiser:
+  value: vanilla_GD
+s_hidden_layers:
+  value: 64
+weight_decay:
+  value: 0
+weight_para:
+  value: Xavier

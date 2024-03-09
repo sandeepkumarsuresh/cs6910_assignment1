@@ -1,0 +1,17 @@
+hidden_layer:4_mini_batch_size:64_activationstanh
+s_of_hidden_layers [784, 128, 128, 128, 128, 10]
+
+
+52620it [00:05, 9268.45it/s]
+54000it [00:05, 9151.14it/s]
+6000it [00:00, 6789.74it/s]
+
+
+54000it [00:05, 9180.03it/s]
+6000it [00:00, 7810.20it/s]
+train_Accuracy =  0.13044444444444445 train_Loss :  2.3025844504969277 val_Accuracy: 0.12166666666666667 val_loss: 2.302584486979002
+
+
+54000it [00:06, 8730.25it/s]
+6000it [00:00, 8805.67it/s]
+train_Accuracy =  0.13044444444444445 train_Loss :  2.3025844504969277 val_Accuracy: 0.12166666666666667 val_loss: 2.302584486979002

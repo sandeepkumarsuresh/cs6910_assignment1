@@ -1,0 +1,15 @@
+hidden_layer:4_mini_batch_size:32_activationssigmoid
+s_of_hidden_layers [784, 32, 32, 32, 32, 10]
+
+40191it [00:03, 13515.40it/s]
+54000it [00:04, 12071.91it/s]
+6000it [00:00, 13674.05it/s]
+
+54000it [00:04, 11689.83it/s]
+6000it [00:00, 10505.15it/s]
+train_Accuracy =  0.09964814814814815 train_Loss :  2.302877682854913 val_Accuracy: 0.10316666666666667 val_loss: 2.30244951826455
+
+
+54000it [00:05, 10481.06it/s]
+6000it [00:00, 10046.27it/s]
+train_Accuracy =  0.09964814814814815 train_Loss :  2.302877682854913 val_Accuracy: 0.10316666666666667 val_loss: 2.30244951826455

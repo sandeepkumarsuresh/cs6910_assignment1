@@ -1,0 +1,36 @@
+hidden_layer:3_mini_batch_size:16_activationsrelu
+s_of_hidden_layers [784, 128, 128, 128, 10]
+/home/sandeep/Documents/IITM/Deep Learning/activations.py:29: RuntimeWarning: overflow encountered in exp
+  exps = np.exp(x)
+/home/sandeep/Documents/IITM/Deep Learning/activations.py:30: RuntimeWarning: invalid value encountered in divide
+  return exps/np.sum(exps)
+
+
+54000it [00:06, 8144.75it/s]
+0it [00:00, ?it/s]
+
+6000it [00:00, 7773.38it/s]
+
+
+54000it [00:06, 8234.57it/s]
+2379it [00:00, 8228.57it/s]
+
+6000it [00:00, 8019.11it/s]
+
+
+54000it [00:06, 8147.78it/s]
+2318it [00:00, 8052.86it/s]
+
+6000it [00:00, 7707.97it/s]
+
+
+54000it [00:06, 8026.59it/s]
+3407it [00:00, 7384.88it/s]
+
+6000it [00:00, 7480.86it/s]
+
+
+
+52989it [00:06, 8476.37it/s]
+54000it [00:06, 8069.00it/s]
+6000it [00:00, 6886.17it/s]

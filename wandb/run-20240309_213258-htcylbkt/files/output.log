@@ -1,0 +1,10 @@
+hidden_layer:3_mini_batch_size:16_activationssigmoid
+s_of_hidden_layers [784, 128, 128, 128, 10]
+
+
+
+53468it [00:07, 7308.07it/s]
+54000it [00:07, 7134.73it/s]
+6000it [00:00, 8026.72it/s]
+6624it [00:00, 9502.50it/s][34m[1mwandb[39m[22m: Ctrl + C detected. Stopping sweep.
+8452it [00:00, 8297.67it/s]

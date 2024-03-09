@@ -1,0 +1,20 @@
+wandb_version: 1
+
+activation_para:
+  value: relu
+batch:
+  value: 64
+epochs:
+  value: 3
+lr:
+  value: 0.0001
+n_hidden_layers:
+  value: 5
+optimiser:
+  value: sgd
+s_hidden_layers:
+  value: 32
+weight_decay:
+  value: 0.0005
+weight_para:
+  value: Xavier

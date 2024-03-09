@@ -1,0 +1,34 @@
+hidden_layer:4_mini_batch_size:64_activationstanh
+s_of_hidden_layers [784, 64, 64, 64, 64, 10]
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:458: RuntimeWarning: invalid value encountered in sqrt
+  self.params[key] = self.params[key] - (self.lr/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+
+
+52702it [00:05, 10328.64it/s]
+54000it [00:05, 9496.94it/s]
+6000it [00:00, 8756.50it/s]
+
+
+38709it [00:04, 10210.96it/s]
+54000it [00:05, 9357.47it/s]
+
+6000it [00:00, 8121.59it/s]
+
+
+54000it [00:05, 9463.35it/s]
+3225it [00:00, 7778.87it/s]
+
+6000it [00:00, 7845.95it/s]
+
+
+54000it [00:05, 9034.77it/s]
+1000it [00:00, 3222.22it/s]
+
+6000it [00:01, 5157.69it/s]
+
+
+
+50351it [00:06, 6938.45it/s]
+54000it [00:06, 8061.52it/s]
+6000it [00:00, 9957.98it/s]
+[34m[1mwandb[39m[22m: Ctrl + C detected. Stopping sweep.

@@ -1,0 +1,16 @@
+hidden_layer:5_mini_batch_size:64_activationsrelu
+s_of_hidden_layers [784, 32, 32, 32, 32, 32, 10]
+/home/sandeep/Documents/IITM/Deep Learning/FFNN.py:458: RuntimeWarning: invalid value encountered in sqrt
+  self.params[key] = self.params[key] - (self.lr/(np.sqrt(lookahead_hat[key])+epsilon))*moment_hat[key]
+
+54000it [00:04, 11811.20it/s]
+6000it [00:00, 12455.70it/s]
+train_Accuracy =  0.10005555555555555 train_Loss :  nan val_Accuracy: 0.0995 val_loss: nan
+
+54000it [00:03, 13765.79it/s]
+6000it [00:00, 13106.59it/s]
+train_Accuracy =  0.10005555555555555 train_Loss :  nan val_Accuracy: 0.0995 val_loss: nan
+
+54000it [00:03, 14320.55it/s]
+6000it [00:00, 15451.92it/s]
+train_Accuracy =  0.10005555555555555 train_Loss :  nan val_Accuracy: 0.0995 val_loss: nan

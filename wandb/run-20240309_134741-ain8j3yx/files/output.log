@@ -1,0 +1,6 @@
+hidden_layer:5_mini_batch_size:32_activationssigmoid
+s_of_hidden_layers [784, 32, 32, 32, 32, 32, 10]
+
+54000it [00:03, 14397.54it/s]
+Accuracy =  0.09961111111111111 Loss :  2.302622227178518
+[34m[1mwandb[39m[22m: Ctrl + C detected. Stopping sweep.
