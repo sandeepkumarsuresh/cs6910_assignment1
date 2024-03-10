@@ -69,8 +69,8 @@ if __name__ == '__main__':
     # plt.title("Confusion Matrix")
     ax = sns.heatmap(confusion_matrix(truth_labels, pred_labels, normalize='true'), cmap='viridis', annot=True)
     ax.set_title("Confusion Matrix", size=16)
-    ax.set_xlabel("True", size=14)
-    ax.set_ylabel("Predictions", size=14)
+    ax.set_ylabel("True", size=14)
+    ax.set_xlabel("Predictions", size=14)
     plt.savefig(os.path.join(save_dir, "Confusion_Matrix.png"))
     plt.close()
 
