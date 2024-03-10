@@ -92,7 +92,7 @@ class NN():
         for key in self.params:
             self.params[key] -= self.lr * grads[key]
 
-    def compute_loss(self,y_truth,y_pred):
+    def compute_cross_entropy_loss(self,y_truth,y_pred):
         """
         Since we are doing classification , we need to compute the 
         cross entropy loss
@@ -109,6 +109,9 @@ class NN():
             p_k += epsilon
         return -np.log(p_k)
         
+    def compute_square_error_loss(self,y_truth,y_pred):
+        return 0.5*np.sum(np.square(y_truth-y_pred))
+
 
 
         
@@ -583,7 +586,9 @@ class NN():
             pred_labels.append(np.argmax(pred))
             truth_labels.append(y_truth)
             # predictions.append(pred == y_truth)
-            cumullative_loss.append(self.compute_loss(y,pred))
+            # cumullative_loss.append(self.compute_cross_entropy_loss(y,pred))
+            cumullative_loss.append(self.compute_square_error_loss(y,pred))
+
 
 
         
