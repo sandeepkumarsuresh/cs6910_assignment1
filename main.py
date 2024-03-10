@@ -56,33 +56,33 @@ def normalise(data):
 
 
 
-def do_sweep():
+# def do_sweep():
 
-    wandb.init()
-    config = wandb.config
-    run_name = "hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)
-    print(run_name)
-    wandb.run.name = run_name
+#     wandb.init()
+#     config = wandb.config
+#     run_name = "hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)
+#     print(run_name)
+#     wandb.run.name = run_name
 
-    s_of_hidden_layers = [784]+[config.s_hidden_layers]*config.n_hidden_layers + [10]
-    size_of_network = len(s_of_hidden_layers)
-    # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
-    # s_of_hidden_layers_.append([10])
-    print('s_of_hidden_layers',s_of_hidden_layers)
-    model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
-                    #  s_hidden_layer = [784 ,128, 32 , 10],
-                    size_of_network=size_of_network,
-                    s_hidden_layer = s_of_hidden_layers,
-                     epochs = config.epochs,
-                     optimiser=config.optimiser ,
-                     mini_batch_size=config.batch,
-                     lr = config.lr,
-                     weight_init_params = config.weight_para,
-                     activation=config.activation_para
-                     )
+#     s_of_hidden_layers = [784]+[config.s_hidden_layers]*config.n_hidden_layers + [10]
+#     size_of_network = len(s_of_hidden_layers)
+#     # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
+#     # s_of_hidden_layers_.append([10])
+#     print('s_of_hidden_layers',s_of_hidden_layers)
+#     model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
+#                     #  s_hidden_layer = [784 ,128, 32 , 10],
+#                     size_of_network=size_of_network,
+#                     s_hidden_layer = s_of_hidden_layers,
+#                      epochs = config.epochs,
+#                      optimiser=config.optimiser ,
+#                      mini_batch_size=config.batch,
+#                      lr = config.lr,
+#                      weight_init_params = config.weight_para,
+#                      activation=config.activation_para
+#                      )
     
-    # Call model.fit here
-    model.fit(train_X_split,train_Y_split,val_X,val_Y)
+#     # Call model.fit here
+#     model.fit(train_X_split,train_Y_split,val_X,val_Y)
 
     # model.vanilla_GD(train_X_split,train_Y_split)
     # model.nadam(train_X_split,train_Y_split)
@@ -160,102 +160,48 @@ if __name__ == '__main__':
 
     train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
 
+
+    
+    # wandb.agent(sweep_id ,function=do_sweep,count=100)
+    # wandb.finish()
+
+
     #----------------------------------------------------------------------------------
-            # Creating a code for sweep configurations
+            # Creating a Confusion Matrix 
+    
+    """
+    best hyperparameter
+
+    hidden layer = 4
+    batch size = 32
+    activations = tanh
+    epoch 10
+    lr = 1e-3
+    optimiser = nadam
+    size of hidden layer = 64
+    weight para = xavier
+    val acc = 88.82%
+    """
     #----------------------------------------------------------------------------------
 
+    layers = [784,64,64,64,64,10]
+    layer_size = len(layers)
 
-
-    # sweep_configuration = {
-    #     "name": "sweepdemo",
-    #     "project":"test",
-    #     "description":"To text if wandb web preview is working",
-    #     "method": "random",
-    #     "metric": {"goal": "minimize", "name": "loss"},
-    #     "parameters": {
-    #         "learning_rate": {"min": 0.0001, "max": 0.1},
-    #         "batch_size": {"values": [16, 32, 64]},
-    #         "epochs": {"values": [5, 10, 15]},
-    #         "optimizer": {"values": ["adam", "sgd"]},
-    #     },
-    # }
-
-    # sweep_config_path = 'sweep_config.yaml'
-    # with open(sweep_config_path, 'r') as file:
-    #     sweep_config = yaml.safe_load(file)
+    model_confusion = FFNN.NN(n_hidden_layers=4,
+                    #  s_hidden_layer = [784 ,128, 32 , 10],
+                    size_of_network=layer_size,
+                    s_hidden_layer = layers,
+                     epochs = 10,
+                     optimiser='nadam' ,
+                     mini_batch_size=32,
+                     lr = 1e-3,
+                     weight_init_params = 'Xavier',
+                     activation='tanh'
+                     )
+    model_confusion.fit(train_X_split,train_Y_split,val_X,val_Y)
     
 
-    
-    wandb.agent(sweep_id ,function=do_sweep,count=100)
-    wandb.finish()
-    # print(sweep_configuration)
+    test_accuracy , test_loss = model_confusion.evaluate_model_performance(test_X,test_y)
 
-    # wandb.init(
-    #     project="test",
-    #     config=sweep_configuration
-    # )
-    # config = wandb.config
-    
-    # epochs = config.epochs
-    # n_hidden_layers = config.n_hidden_layers
-    # s_hidden_layers = config.s_hidden_layers
-    # weight_decay = config.weight_decay
-    # lr = config.lr
-    # optimiser = config.optimiser
-    # mini_batch_size = config.mini_batch_size
-    # weight_initialization = config.weight_initialization
-    # activations = config.activations
-    
-    # print("Epochs Values:", epochs)
-    # print("N Hidden Layers Values:", n_hidden_layers)
-    # print("S Hidden Layers Values:", s_hidden_layers)
-    # print("Weight Decay Values:", weight_decay)
-    # print("Learning Rate Values:", lr)
-    # print("Optimiser Values:", optimiser)
-    # print("Batch Values:", mini_batch_size)
-    # print("Weight Parameter Values:", weight_initialization)
-    # print("Activation Parameter Values:", activations)
-
-
-
-
-
-    """
-    Passing the Data into the Feed Forward Network
-    """
-    # initializing the model
-    # model = FFNN.NN(n_hidden_layers=4 , s_hidden_layer = [784 ,128, 32 , 10] )#,optimiser=optimiser , mini_batch_size=mini_batch_size)
-
-    # sweep_id = wandb.sweep(sweep_configuration)
-
-    # wandb.agent(sweep_id,model,count=10)
-
-    # Forward Pass
-
-    # model.vanilla_GD(train_X,train_y)
-#     model.mgd(train_X,train_y)
-#     model.nag(train_X,train_y)
-    # model.sgd(train_X,train_y)
-    # model.rms_prop(train_X,train_y)
-    # model.adam(train_X,train_y)
-    # model.nadam(train_X_split,train_Y_split)
-
-
-
-
-
-    # model.evaluate_model_performance(test_X,test_y)
-
-
-
-
-
-
-
-
-
-    #Ploting the data
-    # for i in range(9):
-    #     plt.subplot(330  + 1 + i )
-    #     plt.imshow(train_X[i] , cmap = plt.get_cmap('gray'))
-    # plt.show()
+    print('test_accuracy:',test_accuracy)
+    print('test loss:',test_loss)

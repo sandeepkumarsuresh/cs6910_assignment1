@@ -1,0 +1,26 @@
+
+
+54000it [00:05, 9639.97it/s]
+
+6000it [00:00, 8324.45it/s]
+train_Accuracy =  0.8646666666666667 train_Loss :  0.37702492269793564 val_Accuracy: 0.8603333333333333 val_loss: 0.3865020011881438
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/confusion_matrix.py", line 48, in <module>
+    model_confusion.fit(train_X_split,train_Y_split,val_X,val_Y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 612, in fit
+    self.nadam(train_X,train_Y,val_X,val_Y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 512, in nadam
+    activations_A , activations_H = self.forward_pass(x)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 127, in forward_pass
+    activation_A['a'+str(i)] = (self.params['W'+str(i)] @ activation_H['h'+str(i-1)] ) + self.params["B"+str(i)]  # o = W_1*x + B_1
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/confusion_matrix.py", line 48, in <module>
+    model_confusion.fit(train_X_split,train_Y_split,val_X,val_Y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 612, in fit
+    self.nadam(train_X,train_Y,val_X,val_Y)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 512, in nadam
+    activations_A , activations_H = self.forward_pass(x)
+  File "/home/sandeep/Documents/IITM/Deep Learning/FFNN.py", line 127, in forward_pass
+    activation_A['a'+str(i)] = (self.params['W'+str(i)] @ activation_H['h'+str(i-1)] ) + self.params["B"+str(i)]  # o = W_1*x + B_1
+KeyboardInterrupt

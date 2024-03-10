@@ -1,0 +1,19 @@
+
+
+54000it [00:05, 10294.72it/s]
+1086it [00:00, 10859.10it/s]
+
+6000it [00:00, 11131.78it/s]
+
+
+53307it [00:05, 9652.64it/s]
+54000it [00:05, 9665.37it/s]
+6000it [00:00, 7543.15it/s]
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/confusion_matrix.py", line 57, in <module>
+    y_truth = np.argmax(test_y.reshape(len(test_y),1))
+ValueError: cannot reshape array of size 100000 into shape (10000,1)
+Traceback (most recent call last):
+  File "/home/sandeep/Documents/IITM/Deep Learning/confusion_matrix.py", line 57, in <module>
+    y_truth = np.argmax(test_y.reshape(len(test_y),1))
+ValueError: cannot reshape array of size 100000 into shape (10000,1)
