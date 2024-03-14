@@ -33,8 +33,9 @@ class NN():
     """
     Initializing the number and the size of each hidden layers
     """
-    def __init__(self,size_of_network,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3,weight_init_params = 'Xavier',activation = 'sigmoid'):
+    def __init__(self,size_of_network,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3,weight_init_params = 'Xavier',activation = 'sigmoid',weight_decay = 0.1):
         # Initializing the Constructor
+        self.weight_decay = weight_decay
         self.activation = activation
         self.weight_init_params = weight_init_params
         self.size_of_network = size_of_network
@@ -107,7 +108,15 @@ class NN():
         p_k = y_pred[max_index]
         if p_k <= 0:
             p_k += epsilon
-        return -np.log(p_k)
+        sum = 0
+        for i in range(1,len(self.params)//2 + 1):
+            sum += np.sum(self.params["W"+str(i)]**2)
+        
+        reg = (self.weight_decay/(2*self.mini_batch_size)) * sum
+
+        loss = -np.log(p_k)
+        
+        return loss +reg
         
     def compute_square_error_loss(self,y_truth,y_pred):
         return 0.5*np.sum(np.square(y_truth-y_pred))
@@ -176,7 +185,7 @@ class NN():
             # Calculating wrt Weights and B
 
             # grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
-            grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
+            grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)]) + self.weight_decay * self.params['W' + str(i)]
             # print('a shape',grad['a'+str(i)].shape,'h.shape',activation_H['h'+str(i-1)].shape)
             grad['B'+str(i)] = grad['a'+str(i)]
 
@@ -586,8 +595,8 @@ class NN():
             pred_labels.append(np.argmax(pred))
             truth_labels.append(y_truth)
             # predictions.append(pred == y_truth)
-            # cumullative_loss.append(self.compute_cross_entropy_loss(y,pred))
-            cumullative_loss.append(self.compute_square_error_loss(y,pred))
+            cumullative_loss.append(self.compute_cross_entropy_loss(y,pred))
+            # cumullative_loss.append(self.compute_square_error_loss(y,pred))
 
 
 

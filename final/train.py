@@ -1,11 +1,11 @@
 import argparse
 import FFNN
+import optimizers
 from keras.datasets import fashion_mnist
 from keras.datasets import mnist
 import numpy as np
 from keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
-
 
 
 parser = argparse.ArgumentParser()
@@ -26,7 +26,7 @@ parser.add_argument("-d", "--dataset",
                     help="Dataset to use for training. Choices: ['mnist', 'fashion_mnist']")
 parser.add_argument("-e", "--epochs",
                     type=int,
-                    default=1,
+                    default=2,
                     help="Number of epochs to train neural network.")
 parser.add_argument("-b", "--batch_size", 
                     type=int, 
@@ -120,7 +120,7 @@ def main(args):
 
 
 
-    # Creating a class object 
+    # Creating a class object for the neural network
     
     s_of_hidden_layers = [784]+[args.hidden_size]*args.num_layers + [10]
     total_layer_size = len(s_of_hidden_layers)
@@ -136,6 +136,28 @@ def main(args):
                      weight_init_params = args.weight_init,
                      activation=args.activation
                      )
+
+
+    # Creating a class object optimizers
+
+    opt = optimizers.Optimizers()
+
+    if args.optimizer == 'vanilla_GD':
+        opt.vanilla_GD(model,train_X_split,train_Y_split,val_X,val_Y)
+    elif args.optimizer == 'sgd':
+        opt.sgd(model,train_X_split,train_Y_split,val_X,val_Y)
+    elif args.optimizer == 'mgd':
+        opt.mgd(model,train_X_split,train_Y_split,val_X,val_Y)
+    elif args.optimizer == 'nag':
+        opt.nag(train_X_split,train_Y_split,val_X,val_Y)
+    elif args.optimizer == 'rms_prop':
+        opt.rms_prop(model,train_X_split,train_Y_split,val_X,val_Y)
+    elif args.optimizer == 'adam':
+        opt.adam(model,train_X_split,train_Y_split,val_X,val_Y)
+    elif args.optimizer == 'nadam':
+        opt.nadam(model,train_X_split,train_Y_split,val_X,val_Y)
+    else:
+        return "Error in fit function. Optimiser Value must be specified"
 
 
 if __name__ == '__main__':

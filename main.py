@@ -1,3 +1,9 @@
+"""
+Ref: https://www.kaggle.com/code/venkatkrishnan/data-augmentation-deep-learning
+
+"""
+
+
 from keras.datasets import fashion_mnist
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,7 +12,8 @@ import FFNN
 from tqdm import tqdm
 import wandb
 from sklearn.model_selection import train_test_split
-import yaml
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
 
 sweep_configuration = {
     'method': 'bayes', #grid, random
@@ -55,34 +62,34 @@ def normalise(data):
     return data/255
 
 
+ 
+def do_sweep():
 
-# def do_sweep():
+    wandb.init()
+    config = wandb.config
+    run_name = "hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)
+    print(run_name)
+    wandb.run.name = run_name
 
-#     wandb.init()
-#     config = wandb.config
-#     run_name = "hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)
-#     print(run_name)
-#     wandb.run.name = run_name
-
-#     s_of_hidden_layers = [784]+[config.s_hidden_layers]*config.n_hidden_layers + [10]
-#     size_of_network = len(s_of_hidden_layers)
-#     # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
-#     # s_of_hidden_layers_.append([10])
-#     print('s_of_hidden_layers',s_of_hidden_layers)
-#     model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
-#                     #  s_hidden_layer = [784 ,128, 32 , 10],
-#                     size_of_network=size_of_network,
-#                     s_hidden_layer = s_of_hidden_layers,
-#                      epochs = config.epochs,
-#                      optimiser=config.optimiser ,
-#                      mini_batch_size=config.batch,
-#                      lr = config.lr,
-#                      weight_init_params = config.weight_para,
-#                      activation=config.activation_para
-#                      )
+    s_of_hidden_layers = [784]+[config.s_hidden_layers]*config.n_hidden_layers + [10]
+    size_of_network = len(s_of_hidden_layers)
+    # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
+    # s_of_hidden_layers_.append([10])
+    print('s_of_hidden_layers',s_of_hidden_layers)
+    model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
+                    #  s_hidden_layer = [784 ,128, 32 , 10],
+                    size_of_network=size_of_network,
+                    s_hidden_layer = s_of_hidden_layers,
+                     epochs = config.epochs,
+                     optimiser=config.optimiser ,
+                     mini_batch_size=config.batch,
+                     lr = config.lr,
+                     weight_init_params = config.weight_para,
+                     activation=config.activation_para
+                     )
     
-#     # Call model.fit here
-#     model.fit(train_X_split,train_Y_split,val_X,val_Y)
+    # Call model.fit here
+    model.fit(train_X_split,train_Y_split,val_X,val_Y)
 
     # model.vanilla_GD(train_X_split,train_Y_split)
     # model.nadam(train_X_split,train_Y_split)
@@ -161,7 +168,7 @@ if __name__ == '__main__':
     train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
 
 
-    
+
     # wandb.agent(sweep_id ,function=do_sweep,count=100)
     # wandb.finish()
 
