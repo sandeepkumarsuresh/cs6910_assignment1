@@ -6,6 +6,7 @@ from keras.datasets import mnist
 import numpy as np
 from keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
+from keras.preprocessing.image import ImageDataGenerator
 
 
 parser = argparse.ArgumentParser()
@@ -107,15 +108,49 @@ def main(args):
     elif args.dataset == 'mnist':
         (train_X, train_y), (test_X, test_y) = mnist.load_data()
 
-    train_X = (train_X.astype(np.float32)).reshape(len(train_X),-1)
-    test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
-    test_y = to_categorical(test_y.astype(np.float32))
-    train_y = to_categorical(train_y.astype(np.float32))
 
-    train_X = normalise(train_X)
-    test_X = normalise(test_X)
+
 
     train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
+
+    datagen = ImageDataGenerator(
+                            # featurewise_center=True,
+                            # featurewise_std_normalization=True,
+        
+                            rotation_range=40,
+                            width_shift_range=0.2,
+                            height_shift_range=0.2,
+                            rescale=1./255,
+                            shear_range=0.2,
+                            zoom_range=0.2
+                            # rotation_range=20,
+                            # width_shift_range=0.2,
+                            # height_shift_range=0.2
+                            # # horizontal_flip=True,
+                            )
+    
+    # datagen.fit(train_X_split)
+    train_X_split = np.expand_dims(train_X_split, axis=-1)  
+    augmented_data_generator = datagen.flow(train_X_split, train_Y_split, batch_size=len(train_X_split), shuffle=False)
+    augmented_data = augmented_data_generator.next()
+
+    train_X_augmented = (augmented_data[0].astype(np.float32)).reshape(len(augmented_data[0]), -1)
+    train_Y_augmented = to_categorical(augmented_data[1].astype(np.float32))
+
+    # train_X_split = (train_X_split.astype(np.float32)).reshape(len(train_X_split),-1)
+    test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
+    val_X = val_X.astype(np.float32).reshape(len(val_X),-1)
+
+    # train_Y_split = to_categorical(train_Y_split.astype(np.float32))
+    test_y = to_categorical(test_y.astype(np.float32))
+    val_Y = to_categorical(val_Y.astype(np.float32))
+
+
+    train_X_augmented = normalise(train_X_augmented)
+    test_X = normalise(test_X)
+    val_X = normalise(val_X)
+
+
 
 
 
@@ -143,19 +178,19 @@ def main(args):
     opt = optimizers.Optimizers()
 
     if args.optimizer == 'vanilla_GD':
-        opt.vanilla_GD(model,train_X_split,train_Y_split,val_X,val_Y)
+        opt.vanilla_GD(model, train_X_augmented, train_Y_augmented, val_X, val_Y)
     elif args.optimizer == 'sgd':
-        opt.sgd(model,train_X_split,train_Y_split,val_X,val_Y)
+        opt.sgd(model, train_X_augmented, train_Y_augmented, val_X, val_Y)
     elif args.optimizer == 'mgd':
-        opt.mgd(model,train_X_split,train_Y_split,val_X,val_Y)
+        opt.mgd(model, train_X_augmented, train_Y_augmented, val_X, val_Y)
     elif args.optimizer == 'nag':
-        opt.nag(train_X_split,train_Y_split,val_X,val_Y)
+        opt.nag(train_X_augmented, train_Y_augmented, val_X, val_Y)
     elif args.optimizer == 'rms_prop':
-        opt.rms_prop(model,train_X_split,train_Y_split,val_X,val_Y)
+        opt.rms_prop(model, train_X_augmented, train_Y_augmented, val_X, val_Y)
     elif args.optimizer == 'adam':
-        opt.adam(model,train_X_split,train_Y_split,val_X,val_Y)
+        opt.adam(model, train_X_augmented, train_Y_augmented, val_X, val_Y)
     elif args.optimizer == 'nadam':
-        opt.nadam(model,train_X_split,train_Y_split,val_X,val_Y)
+        opt.nadam(model, train_X_augmented, train_Y_augmented, val_X, val_Y)
     else:
         return "Error in fit function. Optimiser Value must be specified"
 

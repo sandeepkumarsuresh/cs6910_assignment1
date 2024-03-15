@@ -363,4 +363,4 @@ class Optimizers:
             train_acc ,train_loss = NN.compute_acc_and_loss(train_X,train_Y)
             val_acc , val_loss = NN.compute_acc_and_loss(val_X,val_Y)
             print('train_Accuracy = ', train_acc ,"train_Loss : ",train_loss , "val_Accuracy:",val_acc, "val_loss:",val_loss)
-            wandb.log({'train_Accuracy': train_acc ,"train_Loss ":train_loss,"val_Accuracy":val_acc,"val_loss":val_loss})
+            # wandb.log({'train_Accuracy': train_acc ,"train_Loss ":train_loss,"val_Accuracy":val_acc,"val_loss":val_loss})

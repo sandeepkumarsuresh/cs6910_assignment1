@@ -211,8 +211,8 @@ class NN():
             pred_labels.append(np.argmax(pred))
             truth_labels.append(y_truth)
             # predictions.append(pred == y_truth)
-            # cumullative_loss.append(self.compute_cross_entropy_loss(y,pred))
-            cumullative_loss.append(compute_square_error_loss(y,pred))
+            cumullative_loss.append(compute_cross_entropy_loss(y,pred))
+            # cumullative_loss.append(compute_square_error_loss(y,pred))
 
 
 
