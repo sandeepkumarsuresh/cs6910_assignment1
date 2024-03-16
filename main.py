@@ -48,10 +48,13 @@ sweep_configuration = {
         },
         'activation_para': {
             'values': ['tanh','sigmoid', 'relu']
+        },
+        'loss_function':{
+            'values': ['cre','mse']
+        },
+        'regularization':{
+            'values': ['True','False']
         }
-        # 'loss_function':{
-        #     'values': ['cre','mse']
-        # }
     }
 }
 sweep_id = wandb.sweep(sweep_configuration,project='test')
@@ -70,7 +73,7 @@ def do_sweep():
 
     wandb.init()
     config = wandb.config
-    run_name = "hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)
+    run_name = "epochs:"+str(config.epochs)+"hidden_layer:"+str(config.n_hidden_layers)+"_mini_batch_size:"+str(config.batch)+"_activations"+str(config.activation_para)+"loss_function"+str(config.loss_function)+"regularization"+str(config.regularization)
     print(run_name)
     wandb.run.name = run_name
 
@@ -78,7 +81,6 @@ def do_sweep():
     size_of_network = len(s_of_hidden_layers)
     # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
     # s_of_hidden_layers_.append([10])
-    print('s_of_hidden_layers',s_of_hidden_layers)
     model = FFNN.NN(
                     n_hidden_layers=config.n_hidden_layers ,
                     #  s_hidden_layer = [784 ,128, 32 , 10],
@@ -89,8 +91,9 @@ def do_sweep():
                     mini_batch_size=config.batch,
                     lr = config.lr,
                     weight_init_params = config.weight_para,
-                    activation=config.activation_para
-                    # loss_function = config.loss_function
+                    activation=config.activation_para,
+                    loss_function = config.loss_function,
+                    regularization = config.regularization
                     )
     
     # Call model.fit here

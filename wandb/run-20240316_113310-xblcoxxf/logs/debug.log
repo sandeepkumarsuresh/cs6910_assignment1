@@ -1,0 +1,32 @@
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Current SDK version is 0.16.3
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Configure stats pid to 65918
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Loading settings from /home/sandeep/.config/wandb/settings
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Loading settings from /home/sandeep/Documents/IITM/Deep Learning/wandb/settings
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'test', 'entity': 'ee23s059', 'root_dir': '/home/sandeep/Documents/IITM/Deep Learning', 'run_id': 'xblcoxxf', 'sweep_param_path': '/home/sandeep/Documents/IITM/Deep Learning/wandb/sweep-syh5pu5v/config-xblcoxxf.yaml', 'sweep_id': 'syh5pu5v'}
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-03-16 11:33:10,099 INFO    Thread-14 (_run_job):65918 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/sandeep/Documents/IITM/Deep Learning/main.py', 'program': '/home/sandeep/Documents/IITM/Deep Learning/main.py'}
+2024-03-16 11:33:10,100 INFO    Thread-14 (_run_job):65918 [wandb_init.py:_log_setup():526] Logging user logs to /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240316_113310-xblcoxxf/logs/debug.log
+2024-03-16 11:33:10,100 INFO    Thread-14 (_run_job):65918 [wandb_init.py:_log_setup():527] Logging internal logs to /home/sandeep/Documents/IITM/Deep Learning/wandb/run-20240316_113310-xblcoxxf/logs/debug-internal.log
+2024-03-16 11:33:10,100 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():566] calling init triggers
+2024-03-16 11:33:10,100 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():573] wandb.init called with sweep_config: {'activation_para': 'relu', 'batch': 32, 'epochs': 5, 'loss_function': 'cre', 'lr': 0.001, 'n_hidden_layers': 5, 'optimiser': 'nadam', 'regularization': 'False', 's_hidden_layers': 128, 'weight_decay': 0.5, 'weight_para': 'Xavier'}
+config: {}
+2024-03-16 11:33:10,100 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():616] starting backend
+2024-03-16 11:33:10,100 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():620] setting up manager
+2024-03-16 11:33:10,111 INFO    Thread-14 (_run_job):65918 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-03-16 11:33:10,111 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():628] backend started and connected
+2024-03-16 11:33:10,122 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_config_callback():1343] config_cb None None {'activation_para': 'relu', 'batch': 32, 'epochs': 5, 'loss_function': 'cre', 'lr': 0.001, 'n_hidden_layers': 5, 'optimiser': 'nadam', 'regularization': 'False', 's_hidden_layers': 128, 'weight_decay': 0.5, 'weight_para': 'Xavier'}
+2024-03-16 11:33:10,125 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():720] updated telemetry
+2024-03-16 11:33:10,131 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-03-16 11:33:10,766 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_on_init():2262] communicating current version
+2024-03-16 11:33:10,990 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_on_init():2271] got version response upgrade_message: "wandb version 0.16.4 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-03-16 11:33:10,990 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():804] starting run threads in backend
+2024-03-16 11:33:11,037 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_console_start():2241] atexit reg
+2024-03-16 11:33:11,037 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_redirect():2096] redirect: wrap_raw
+2024-03-16 11:33:11,037 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_redirect():2161] Wrapping output streams.
+2024-03-16 11:33:11,037 INFO    Thread-14 (_run_job):65918 [wandb_run.py:_redirect():2186] Redirects installed.
+2024-03-16 11:33:11,038 INFO    Thread-14 (_run_job):65918 [wandb_init.py:init():847] run started, returning control to user process
+2024-03-16 11:43:16,225 INFO    MainThread:65918 [wandb_run.py:_finish():1970] finishing run ee23s059/test/xblcoxxf
+2024-03-16 11:43:16,225 INFO    MainThread:65918 [wandb_run.py:_atexit_cleanup():2210] got exitcode: 0
+2024-03-16 11:43:16,225 INFO    MainThread:65918 [wandb_run.py:_restore():2193] restore
+2024-03-16 11:43:16,225 INFO    MainThread:65918 [wandb_run.py:_restore():2199] restore done

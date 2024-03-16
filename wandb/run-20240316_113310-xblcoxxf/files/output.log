@@ -1,0 +1,67 @@
+
+epochs:5hidden_layer:5_mini_batch_size:32_activationsreluloss_functioncreregularizationFalse
+
+
+
+
+
+
+
+
+
+
+
+
+
+54000it [00:27, 1958.23it/s]
+3799it [00:01, 2070.70it/s]
+
+6000it [00:02, 2267.32it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+54000it [00:27, 1996.13it/s]
+
+5301it [00:02, 2145.66it/s]
+
+6000it [00:02, 2153.44it/s]
+
+
+
+
+
+
+
+
+
+
+
+54000it [00:23, 2291.72it/s]
+
+
+6000it [00:04, 1341.66it/s]
+train_Accuracy =  0.22405555555555556 train_Loss :  1.9774317651562296 val_Accuracy: 0.2245 val_loss: 1.8715537042325125
+
+
+
+
+
+
+
+
+
+
+54000it [00:21, 2559.38it/s]
+4354it [00:01, 2395.72it/s]
+
+6000it [00:02, 2766.68it/s]
+[34m[1mwandb[39m[22m: Ctrl + C detected. Stopping sweep.
