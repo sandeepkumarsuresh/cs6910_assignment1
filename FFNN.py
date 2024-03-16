@@ -33,7 +33,7 @@ class NN():
     """
     Initializing the number and the size of each hidden layers
     """
-    def __init__(self,size_of_network,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3,weight_init_params = 'Xavier',activation = 'sigmoid',weight_decay = 0.1):
+    def __init__(self,size_of_network,n_hidden_layers,s_hidden_layer,lr=1e-4,mini_batch_size=64,optimiser = 'sgd',epochs = 3,weight_init_params = 'Xavier',activation = 'sigmoid',weight_decay = 0.1,loss_function = 'cre',regularization = False):
         # Initializing the Constructor
         self.weight_decay = weight_decay
         self.activation = activation
@@ -46,6 +46,8 @@ class NN():
         self.mini_batch_size = mini_batch_size # Mini Batch Size
         self.optimiser = optimiser
         self.epochs = epochs
+        self.loss_function = loss_function
+        self.regularization = regularization
 
 
 
@@ -108,19 +110,33 @@ class NN():
         p_k = y_pred[max_index]
         if p_k <= 0:
             p_k += epsilon
-        sum = 0
-        for i in range(1,len(self.params)//2 + 1):
-            sum += np.sum(self.params["W"+str(i)]**2)
         
-        reg = (self.weight_decay/(2*self.mini_batch_size)) * sum
-
         loss = -np.log(p_k)
+
         
-        return loss +reg
+        if self.regularization:
+            sum = 0
+            for i in range(1,len(self.params)//2 + 1):
+                sum += np.sum(self.params["W"+str(i)]**2)
+            
+            reg = (self.weight_decay/(2*self.mini_batch_size)) * sum
+            return loss +reg
+        else:
+            return loss
         
     def compute_square_error_loss(self,y_truth,y_pred):
-        return 0.5*np.sum(np.square(y_truth-y_pred))
 
+        mse = 0.5*np.sum(np.square(y_truth-y_pred))
+
+        if self.regularization:
+            sum = 0
+            for i in range(1,len(self.params)//2 + 1):
+                sum += np.sum(self.params["W"+str(i)]**2)
+            
+            reg = (self.weight_decay/(2*self.mini_batch_size)) * sum      
+            return  mse+reg
+        else:
+            return mse
 
 
         
@@ -184,8 +200,12 @@ class NN():
             
             # Calculating wrt Weights and B
 
+            if self.regularization:
             # grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
-            grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)]) + self.weight_decay * self.params['W' + str(i)]
+                grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)]) + self.weight_decay * self.params['W' + str(i)]
+            else:
+                grad['W'+str(i)] = np.outer(grad['a'+str(i)],activation_H['h'+str(i-1)])
+                 
             # print('a shape',grad['a'+str(i)].shape,'h.shape',activation_H['h'+str(i-1)].shape)
             grad['B'+str(i)] = grad['a'+str(i)]
 
@@ -595,8 +615,10 @@ class NN():
             pred_labels.append(np.argmax(pred))
             truth_labels.append(y_truth)
             # predictions.append(pred == y_truth)
-            cumullative_loss.append(self.compute_cross_entropy_loss(y,pred))
-            # cumullative_loss.append(self.compute_square_error_loss(y,pred))
+            if self.loss_function == 'cre':
+                cumullative_loss.append(self.compute_cross_entropy_loss(y,pred))
+            else:
+                cumullative_loss.append(self.compute_square_error_loss(y,pred))
 
 
 

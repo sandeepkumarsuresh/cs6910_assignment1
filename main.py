@@ -49,6 +49,9 @@ sweep_configuration = {
         'activation_para': {
             'values': ['tanh','sigmoid', 'relu']
         }
+        # 'loss_function':{
+        #     'values': ['cre','mse']
+        # }
     }
 }
 sweep_id = wandb.sweep(sweep_configuration,project='test')
@@ -76,20 +79,24 @@ def do_sweep():
     # s_of_hidden_layers_ = [config.s_hidden_layers[:-1] for _ in range(config.n_hidden_layers - 1)]
     # s_of_hidden_layers_.append([10])
     print('s_of_hidden_layers',s_of_hidden_layers)
-    model = FFNN.NN(n_hidden_layers=config.n_hidden_layers ,
+    model = FFNN.NN(
+                    n_hidden_layers=config.n_hidden_layers ,
                     #  s_hidden_layer = [784 ,128, 32 , 10],
                     size_of_network=size_of_network,
                     s_hidden_layer = s_of_hidden_layers,
-                     epochs = config.epochs,
-                     optimiser=config.optimiser ,
-                     mini_batch_size=config.batch,
-                     lr = config.lr,
-                     weight_init_params = config.weight_para,
-                     activation=config.activation_para
-                     )
+                    epochs = config.epochs,
+                    optimiser=config.optimiser ,
+                    mini_batch_size=config.batch,
+                    lr = config.lr,
+                    weight_init_params = config.weight_para,
+                    activation=config.activation_para
+                    # loss_function = config.loss_function
+                    )
     
     # Call model.fit here
-    model.fit(train_X_split,train_Y_split,val_X,val_Y)
+    # model.fit(train_X_split,train_Y_split,val_X,val_Y)
+    model.fit(train_X_augmented, train_Y_augmented, val_X, val_Y)
+
 
     # model.vanilla_GD(train_X_split,train_Y_split)
     # model.nadam(train_X_split,train_Y_split)
@@ -147,25 +154,25 @@ if __name__ == '__main__':
     Here the values are from 0 to 255 --> brightness of the pixel values
     Therefore converting the pixel values to float values --> for easier calc of gradients
     """
-    train_X = (train_X.astype(np.float32)).reshape(len(train_X),-1)
-    test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
-    test_y = to_categorical(test_y.astype(np.float32))
-    train_y = to_categorical(train_y.astype(np.float32))
+    # train_X = (train_X.astype(np.float32)).reshape(len(train_X),-1)
+    # test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
+    # test_y = to_categorical(test_y.astype(np.float32))
+    # train_y = to_categorical(train_y.astype(np.float32))
 
 
     #----------------------------------------------------------------------------------
             # Normalising the data
     #----------------------------------------------------------------------------------
 
-    train_X = normalise(train_X)
-    test_X = normalise(test_X)
+    # train_X = normalise(train_X)
+    # test_X = normalise(test_X)
 
 
     #----------------------------------------------------------------------------------
             # Creating a Validation Data from the train Data
     #----------------------------------------------------------------------------------
 
-    train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
+    # train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
 
 
 
@@ -191,24 +198,68 @@ if __name__ == '__main__':
     """
     #----------------------------------------------------------------------------------
 
-    layers = [784,64,64,64,64,10]
-    layer_size = len(layers)
 
-    model_confusion = FFNN.NN(n_hidden_layers=4,
-                    #  s_hidden_layer = [784 ,128, 32 , 10],
-                    size_of_network=layer_size,
-                    s_hidden_layer = layers,
-                     epochs = 10,
-                     optimiser='nadam' ,
-                     mini_batch_size=32,
-                     lr = 1e-3,
-                     weight_init_params = 'Xavier',
-                     activation='tanh'
-                     )
-    model_confusion.fit(train_X_split,train_Y_split,val_X,val_Y)
+    train_X_split ,val_X , train_Y_split , val_Y = train_test_split(train_X,train_y,test_size=0.10,random_state=42)
+
+    datagen = ImageDataGenerator(
+                            # featurewise_center=True,
+                            # featurewise_std_normalization=True,
+        
+                            rotation_range=40,
+                            width_shift_range=0.2,
+                            height_shift_range=0.2
+                            # shear_range=0.2,
+                            # zoom_range=0.2
+                            # rotation_range=20,
+                            # width_shift_range=0.2,
+                            # height_shift_range=0.2
+                            # # horizontal_flip=True,
+                            )
+    
+    # datagen.fit(train_X_split)
+    train_X_split = np.expand_dims(train_X_split, axis=-1)  
+    augmented_data_generator = datagen.flow(train_X_split, train_Y_split, batch_size=len(train_X_split), shuffle=False)
+    augmented_data = augmented_data_generator.next()
+
+    train_X_augmented = (augmented_data[0].astype(np.float32)).reshape(len(augmented_data[0]), -1)
+    train_Y_augmented = to_categorical(augmented_data[1].astype(np.float32))
+
+    # train_X_split = (train_X_split.astype(np.float32)).reshape(len(train_X_split),-1)
+    test_X = test_X.astype(np.float32).reshape(len(test_X),-1)
+    val_X = val_X.astype(np.float32).reshape(len(val_X),-1)
+
+    # train_Y_split = to_categorical(train_Y_split.astype(np.float32))
+    test_y = to_categorical(test_y.astype(np.float32))
+    val_Y = to_categorical(val_Y.astype(np.float32))
+
+
+    train_X_augmented = normalise(train_X_augmented)
+    test_X = normalise(test_X)
+    val_X = normalise(val_X)
+
+
+    wandb.agent(sweep_id ,function=do_sweep,count=100)
+    wandb.finish()
+
+
+    # layers = [784,64,64,64,64,10]
+    # layer_size = len(layers)
+
+    # model_confusion = FFNN.NN(n_hidden_layers=4,
+    #                 #  s_hidden_layer = [784 ,128, 32 , 10],
+    #                 size_of_network=layer_size,
+    #                 s_hidden_layer = layers,
+    #                  epochs = 10,
+    #                  optimiser='nadam' ,
+    #                  mini_batch_size=32,
+    #                  lr = 1e-3,
+    #                  weight_init_params = 'Xavier',
+    #                  activation='tanh'
+    #                  )
+    # model_confusion.fit(train_X_split,train_Y_split,val_X,val_Y)
     
 
-    test_accuracy , test_loss = model_confusion.evaluate_model_performance(test_X,test_y)
+    # test_accuracy , test_loss = model_confusion.evaluate_model_performance(test_X,test_y)
 
-    print('test_accuracy:',test_accuracy)
-    print('test loss:',test_loss)
+    # print('test_accuracy:',test_accuracy)
+    # print('test loss:',test_loss)

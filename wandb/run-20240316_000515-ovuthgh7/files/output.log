@@ -1,0 +1,62 @@
+hidden_layer:4_mini_batch_size:16_activationstanh
+s_of_hidden_layers [784, 64, 64, 64, 64, 10]
+/home/sandeep/Documents/IITM/Deep Learning/activations.py:29: RuntimeWarning: overflow encountered in exp
+  exps = np.exp(x)
+/home/sandeep/Documents/IITM/Deep Learning/activations.py:30: RuntimeWarning: invalid value encountered in divide
+  return exps/np.sum(exps)
+
+
+
+
+
+
+
+54000it [00:16, 3313.53it/s]
+2261it [00:00, 3437.85it/s]
+
+6000it [00:01, 3258.83it/s]
+
+
+
+
+
+
+
+54000it [00:16, 3311.17it/s]
+
+6000it [00:01, 3270.63it/s]
+train_Accuracy =  0.10005555555555555 train_Loss :  nan val_Accuracy: 0.0995 val_loss: nan
+
+
+
+
+
+
+
+54000it [00:15, 3388.62it/s]
+3936it [00:01, 3412.33it/s]
+
+6000it [00:01, 3233.39it/s]
+
+
+
+
+
+
+
+54000it [00:16, 3299.90it/s]
+1221it [00:00, 3119.82it/s]
+
+6000it [00:01, 3433.94it/s]
+
+
+
+
+
+
+
+
+54000it [00:18, 2851.43it/s]
+1089it [00:00, 3428.02it/s]
+
+6000it [00:01, 3408.01it/s]
