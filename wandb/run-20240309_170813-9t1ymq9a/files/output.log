@@ -1,9 +1,0 @@
-hidden_layer:4_mini_batch_size:32_activationstanh
-s_of_hidden_layers [784, 32, 32, 32, 32, 10]
-i: 1
-Activation shape: (784, 1)
-W shape: (32, 784)
-B shape: (32, 1)
-Activation A shape: (32, 1)
-i: 2
-  0%|                                                       | 0/3 [00:00<?, ?it/s]

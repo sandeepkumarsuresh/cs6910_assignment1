@@ -1,3 +1,0 @@
-hidden_layer:5_mini_batch_size:32_activationsrelu
-s_of_hidden_layers [784, 64, 64, 64, 64, 64, 10]
-[34m[1mwandb[39m[22m: Ctrl + C detected. Stopping sweep.

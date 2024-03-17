@@ -1,3 +1,0 @@
-hidden_layer:3_mini_batch_size:16_activationstanh
-s_of_hidden_layers [784, 128, 128, 128, 10]
-  0%|                                                                                                                                                     | 0/3 [00:00<?, ?it/s]

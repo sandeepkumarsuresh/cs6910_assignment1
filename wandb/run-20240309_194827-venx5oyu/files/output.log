@@ -1,2 +1,0 @@
-hidden_layer:4_mini_batch_size:16_activationssigmoid
-s_of_hidden_layers [784, 32, 32, 32, 32, 10]
